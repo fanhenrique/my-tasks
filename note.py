@@ -1,7 +1,8 @@
 import datetime as dt
 import termcolor as tc
 
-from colored import colored_id
+import colored
+
 class Note():
   def __init__(self, id, text, star=False):
     self.id = id
@@ -9,13 +10,14 @@ class Note():
     self.star = star
     self.date = dt.datetime.now().timestamp()
 
-  def __str__(self):
-    return colored_id(self.id) + tc.colored(
-        text='\u25CF ',
-        color='light_blue',
-        attrs=[],
-      ) + tc.colored(
-        text=self.text,
-        color='light_grey',
-        attrs=[],
-      )
+  def __str__(self, level):
+    return (
+      colored.pipe(level=level) +
+      colored.id(id=self.id) + 
+      colored.note(text=self.text) + 
+      colored.date(date=self.date) +
+      colored.star(star=self.star)
+    )
+
+
+      
