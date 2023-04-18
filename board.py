@@ -1,51 +1,48 @@
 import datetime as dt
 import termcolor as tc
 
-from colored import colored_id
+import colored
 from task import Task
 from note import Note
 
 class Board():
-  # def __init__(self, id, text, childrens=[], tasks=[], notes=[], check=False, started=False):
-  def __init__(self, id, text, childrens=[], check=False, started=False):
+
+  def __init__(self, id, text, childrens=[], check=False, star=False):
     self.id = id
     self.text = text
-    self.childrens = childrens #subtasks path 
-    # self.tasks = tasks #list tasks
-    # self.notes = notes #list notes
+    self.childrens = childrens #subtasks path or tasks or notes
     self.check = check
-    self.started = started
+    self.star = star
     self.date = dt.datetime.now().timestamp()
 
-  def __str__(self):
-    return colored_id(self.id) + tc.colored(
-      text='#',
-      color='light_green',
-      attrs=['bold'],
-    ) + tc.colored(
-      text=self.text+' ['+self.count_tasks_checks()+']',
-      color='light_green',
-      attrs=['bold','underline']
+  def __str__(self, level, info=None):
+    return (
+      colored.pipe(level)+
+      colored.id(self.id) + 
+      colored.board(self.text) +
+      (colored.info(info[0], info[1]) if info else '') +
+      colored.date(self.date) +
+      colored.star(star=self.star)
     )
-     
+
   def count_tasks(self):
-    count_tasks = 0
+    ct = 0
     for child in self.childrens:
       if isinstance(child, Task):
-        count_tasks+=1
-    return count_tasks
+        ct+=1
+    return ct
   
   def count_notes(self):
-    count_notes = 0
+    nt = 0
     for child in self.childrens:
       if isinstance(child, Note):
-        count_notes+=1
-    return count_notes
+        nt+=1
+    return nt
 
   def count_tasks_checks(self):
-    count_tasks_checks = 0
+    ct = 0
     for child in self.childrens:
       if isinstance(child, Task):
-        if child.check:
-          count_tasks_checks+=1
-    return str(count_tasks_checks)
+        if child.check: 
+          ct+=1
+    return ct
