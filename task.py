@@ -14,12 +14,12 @@ class Task():
     self.date = dt.datetime.now().timestamp()
   
 
-  def __str__(self, level):
+  def __str__(self, level, date=False):
     return (
       colored.pipe(level=level) +
       colored.id(id=self.id) + 
       colored.task(text=self.text, check=self.check, started=self.started, priority=self.priority) +
-      colored.date(date=self.date) + 
+      (colored.date(date=self.date) if date else '') + 
       colored.star(star=self.star)
     )
       

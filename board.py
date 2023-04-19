@@ -15,13 +15,13 @@ class Board():
     self.star = star
     self.date = dt.datetime.now().timestamp()
 
-  def __str__(self, level, info=None):
+  def __str__(self, level, info=None, date=False):
     return (
       colored.pipe(level)+
       colored.id(self.id) + 
       colored.board(self.text) +
       (colored.info(info[0], info[1]) if info else '') +
-      colored.date(self.date) +
+      (colored.date(self.date) if date else '') +
       colored.star(star=self.star)
     )
 
