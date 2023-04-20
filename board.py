@@ -17,8 +17,8 @@ class Board():
 
   def __str__(self, level, info=None, date=False):
     return (
-      colored.pipe(level)+
-      colored.id(self.id) + 
+      
+      colored.id(id=self.id, level=level) + 
       colored.board(self.text) +
       (colored.info(info[0], info[1]) if info else '') +
       (colored.date(self.date) if date else '') +
@@ -39,10 +39,18 @@ class Board():
         nt+=1
     return nt
 
-  def count_tasks_checks(self):
-    ct = 0
+  def count_checked_tasks(self):
+    ctc = 0
     for child in self.childrens:
       if isinstance(child, Task):
         if child.check: 
-          ct+=1
-    return ct
+          ctc+=1
+    return ctc
+
+  def count_started_tasks(self):
+    cts = 0
+    for child in self.childrens:
+      if isinstance(child, Task):
+        if child.started: 
+          cts+=1
+    return cts
