@@ -2,25 +2,27 @@ import termcolor as tc
 
 import utils
 
-def id(id):
+def id(id, level):
+  l = ''
+  if level > 1:
+    l+='\u2223  '*(level-1)
+
+  if level > 0:
+    l+='\u2223'
+    l += ' ' if id > 9 else '  '
+
+  
   return (
     tc.colored(
-      text=repr(id),
+      text=l,#'|  '*level,
       color='dark_grey',
-      attrs=['bold','dark'],
-    ) + 
+      attrs=['bold'],
+    ) +
     tc.colored(
-      text='. ' if id > 9 else '.  ',
+      text=repr(id)+'.',
       color='dark_grey',
-      attrs=['dark'],
+      attrs=['bold'],
     )
-  )
-
-def pipe(level):
-  return tc.colored(
-    text='|  '*level,
-    color='dark_grey',
-    attrs=['dark'],
   )
 
 def info(n1, n2):
