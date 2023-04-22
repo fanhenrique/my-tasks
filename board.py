@@ -22,7 +22,7 @@ class Board():
       colored.board(self.text) +
       (colored.info(info[0], info[1]) if info else '') +
       (colored.date(self.date) if date else '') +
-      colored.star(star=self.star)
+      (colored.star() if self.star else '')
     )
 
   def count_tasks(self):

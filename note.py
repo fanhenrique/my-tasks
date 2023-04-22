@@ -15,7 +15,7 @@ class Note():
       colored.id(id=self.id, level=level) + 
       colored.note(text=self.text) + 
       (colored.date(date=self.date) if date else '') +
-      colored.star(star=self.star)
+      (colored.star() if self.star else '')
     )
 
 

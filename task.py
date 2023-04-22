@@ -19,6 +19,6 @@ class Task():
       colored.id(id=self.id, level=level) + 
       colored.task(text=self.text, check=self.check, started=self.started, priority=self.priority) +
       (colored.date(date=self.date) if date else '') + 
-      colored.star(star=self.star)
+      (colored.star() if self.star else '')
     )
       
