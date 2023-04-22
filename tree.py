@@ -5,8 +5,10 @@ import colored
 from board import Board
 
 class Tree():
+
   def __init__(self, root):
     self.root = root
+
 
   def add_node(self, new_node, current=None):
     if not current:
@@ -55,6 +57,7 @@ class Tree():
     
     return 0
 
+
   def print_tree_with_info_recursive(self, current, visited, level):
     
     visited.append(current)
@@ -63,26 +66,25 @@ class Tree():
       print(current.__str__(level=level, info=[
           str(self.count_info_recursive(current, [], 'count_checked_tasks')),
           str(self.count_info_recursive(current, [], 'count_tasks')),
-          # str(self.count_info_recursive(current, [], 'count_notes')),
         ], date=True))
       
-
       for child in current.childrens:
         if child not in visited:
           self.print_tree_with_info_recursive(child, visited, level+1) 
     else:
       print(current.__str__(level, date=True))
   
-    return (
+
+  def print_tree(self, current):
+
+    self.print_tree_with_info_recursive(current, [], 0)
+
+    a = (
       self.count_info_recursive(current, [], 'count_tasks'),
       self.count_info_recursive(current, [], 'count_checked_tasks'),
       self.count_info_recursive(current, [], 'count_started_tasks'),            
       self.count_info_recursive(current, [], 'count_notes'),      
     )
-
-  def print_tree(self, current):
-
-    a = self.print_tree_with_info_recursive(current, [], 0)
 
     complete=a[1]*100/(a[0])
     
