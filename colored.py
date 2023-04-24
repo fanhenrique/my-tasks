@@ -117,3 +117,23 @@ def all_tree_info(complete, done, pending, started, not_started, notes):
     tc.colored(text=f'{not_started} ', color='white', attrs=['bold']) + text(text=f'not started ') + pipe() +
     tc.colored(text=f'{note_icon} {notes} ',color='magenta', attrs=['bold']) + text(text='notes')
   )
+
+def confirmation_add(confirmation, new):
+  
+  if confirmation:
+    succecc = tc.colored(text='SUCCESS ', color='light_green', attrs=['bold'])
+    if isinstance(new, Note):
+      create = text(f'Create note {new.id}')
+    elif isinstance(new, Task):
+      create = text(f'Create task {new.id}')
+    if isinstance(new, Board):
+      create = text(f'Create Board {new.id}')
+    return succecc + create
+  else:
+    error = tc.colored(text='ERROR ', color='light_red', attrs=['bold'])
+    if not new:
+      error_node = text(text='New node not informed')
+    else:
+      error_node = text(text='Could not add new node')
+    
+    return error + error_node
