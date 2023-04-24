@@ -1,9 +1,9 @@
 import datetime as dt
-import termcolor as tc
 
-import colored
-from task import Task
-from note import Note
+import colored as colored
+from .task import Task
+from .note import Note
+
 
 class Board():
 

@@ -1,10 +1,10 @@
 from collections import deque
 
-import colored
+import colored as colored
 
-from board2 import Board2
-from task import Task
-from note import Note
+from tree.board2 import Board2
+from tree.task import Task
+from tree.note import Note
 
 class Tree2():
   def __init__(self, root):

@@ -1,9 +1,9 @@
 import datetime as dt
 import termcolor as tc
 
-import colored
-from task import Task
-from note import Note
+import colored as colored
+from tree.task import Task
+from tree.note import Note
 
 class Board2():
   def __init__(self, id, text, childrens=[], tasks=[], notes=[], check=False, started=False):

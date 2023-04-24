@@ -1,7 +1,6 @@
 import datetime as dt
-import termcolor as tc
 
-import colored
+import colored as colored
 
 class Note():
   def __init__(self, id, text, star=False):
