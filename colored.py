@@ -1,6 +1,11 @@
+
 import termcolor as tc
 
-import utils
+from tree.board import Board
+from tree.note import Note
+from tree.task import Task
+
+import tree.utils as utils
 
 priority_color = {0:'white', 1:'light_yellow', 2:'light_red'}
 priority_attrs = {0:['bold'], 1:['bold'], 2:['bold', 'underline']}
