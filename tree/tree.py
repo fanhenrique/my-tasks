@@ -5,39 +5,41 @@ import colored as colored
 from tree.board import Board
 from tree.task import Task
 from tree.note import Note
+
 class Tree():
 
   def __init__(self, root=None):
-    self.root = (
-          Board(id=1, text='quadro1',
-            childrens=[
-              Task(id=12, text='tarefa6', started=True),              
-              Board(id=2, text='quadro2',
-                childrens = [
-                  Task(id=5, text='tarefa1'),
-                  Task(id=17, text='tarefa10', priority=1),
-                  Task(id=10, text='tarefa4', started=True),
-                  Board(id=7, text='quadro3', star=True, childrens =[
-                    Task(id=11, text='tarefa5', check=True),
-                    Task(id=8, text='tarefa3', priority=1, started=True),
-                    Task(id=16, text='tarefa11', priority=2, started=True),
-                    Note(id=9, text='nota3', star=True)
-                  ]),                
-                  Task(id=13, text='tarefa7', priority=1, check=True),
-                  Task(id=18, text='tarefa9', priority=1),
-                  Note(id=6, text='nota1'),
-                ]
-              ),
-              Board(id=14, text='quadro4', childrens = [
-                Task(id=15, text='tafera8', check=True)
-                ]
-              ),
-              Task(id=3, text='tarefa2', priority=2, star=True),
-              Note(id=4, text='nota2'),
-            ],
-          )
-        )
-
+    self.root = Board(id=1, text='quadro1',
+                  childrens = deque([
+                    Task(id=12, text='tarefa6', started=True),              
+                    Board(id=2, text='quadro2',
+                      childrens = deque([
+                        Task(id=5, text='tarefa1'),
+                        Task(id=17, text='tarefa10', priority=1),
+                        Task(id=10, text='tarefa4', started=True),
+                        Board(id=7, text='quadro3', star=True,
+                          childrens = deque([
+                            Task(id=11, text='tarefa5', check=True),
+                            Task(id=8, text='tarefa3', priority=1, started=True),
+                            Task(id=16, text='tarefa11', priority=2, started=True),
+                            Note(id=9, text='nota3', star=True)
+                          ])
+                        ),                
+                        Task(id=13, text='tarefa7', priority=1, check=True),
+                        Task(id=18, text='tarefa9', priority=1),
+                        Note(id=6, text='nota1'),
+                      ])
+                    ),
+                    Board(id=14, text='quadro4',
+                      childrens = deque([
+                        Task(id=15, text='tafera8', check=True)
+                      ])
+                    ),
+                    Task(id=3, text='tarefa2', priority=2, star=True),
+                    Note(id=4, text='nota2'),
+                  ]),
+                )
+        
 
   def add(self, text, type, current=None):
     if not current:

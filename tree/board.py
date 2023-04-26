@@ -1,13 +1,16 @@
 import datetime as dt
 
+from collections import deque
+
 import colored as colored
+
 from .task import Task
 from .note import Note
 
 
 class Board():
 
-  def __init__(self, id, text, childrens=[], check=False, star=False):
+  def __init__(self, id, text, childrens=deque(), check=False, star=False):
     self.id = id
     self.text = text
     self.childrens = childrens #subtasks path or tasks or notes
