@@ -118,22 +118,42 @@ def all_tree_info(complete, done, pending, started, not_started, notes):
     tc.colored(text=f'{note_icon} {notes} ',color='magenta', attrs=['bold']) + text(text='notes')
   )
 
-def confirmation_add(confirmation, new):
+def error():
+  return tc.colored(text='ERROR ', color='light_red', attrs=['bold'])
+
+def success():
+  return tc.colored(text='SUCCESS ', color='light_green', attrs=['bold'])
+
+def confirmation_add(confirmation, father=None, new=None):
   
   if confirmation:
-    succecc = tc.colored(text='SUCCESS ', color='light_green', attrs=['bold'])
     if isinstance(new, Note):
-      create = text(f'Create note {new.id}')
+      type = text('Note ') 
     elif isinstance(new, Task):
-      create = text(f'Create task {new.id}')
-    if isinstance(new, Board):
-      create = text(f'Create Board {new.id}')
-    return succecc + create
-  else:
-    error = tc.colored(text='ERROR ', color='light_red', attrs=['bold'])
-    if not new:
-      error_node = text(text='New node not informed')
-    else:
-      error_node = text(text='Could not add new node')
+      type = text('Task ')
+    elif isinstance(new, Board):
+      typw = text('Board ')
     
-    return error + error_node
+    return success() + type + text(new.id, color='white', attrs=['bold']) + text('created')
+  else:
+    if father:
+      if isinstance(father, Task):
+        error_node = text(text='Cannot add a new node in a task')
+      if isinstance(father, Note):
+        error_node = text(text='Cannot add a new node in a note')
+    
+    return error() + error_node
+
+def id_not_found(id):
+  return error() + text('Node id ') + text(text=id, color='white', attrs=['bold']) + text(' not found') 
+
+def confirmation_delete(deleted):
+  if isinstance(deleted, Note):
+    type = text('Note ') 
+  elif isinstance(deleted, Task):
+    type = text('Task ')
+  elif isinstance(deleted, Board):
+    type = text('Board ')
+
+  return success() + type + text(deleted.id, color='white', attrs=['bold']) + text(' deleted')
+  
