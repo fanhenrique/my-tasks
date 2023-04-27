@@ -32,7 +32,6 @@ def text(text, color='light_grey', attrs=['dark', 'bold']):
     attrs=attrs,
   )
 
-
 def id(id, level):
   line = ''
   if level > 1:
@@ -122,19 +121,13 @@ def error():
   return tc.colored(text='ERROR ', color='light_red', attrs=['bold'])
 
 def success():
-  return tc.colored(text='SUCCESS ', color='light_green', attrs=['bold'])
+  return tc.colored(text='SUCCESS ', color='green', attrs=['bold'])
+
 
 def confirmation_add(confirmation, father=None, new=None):
   
   if confirmation:
-    if isinstance(new, Note):
-      type = text('Note ') 
-    elif isinstance(new, Task):
-      type = text('Task ')
-    elif isinstance(new, Board):
-      typw = text('Board ')
-    
-    return success() + type + text(new.id, color='white', attrs=['bold']) + text('created')
+    return success() + text(utils.type_node(new)) + text(new.id, color='white', attrs=['bold']) + text(' created')
   else:
     if father:
       if isinstance(father, Task):
@@ -145,15 +138,18 @@ def confirmation_add(confirmation, father=None, new=None):
     return error() + error_node
 
 def id_not_found(id):
-  return error() + text('Node id ') + text(text=id, color='white', attrs=['bold']) + text(' not found') 
+  return(
+    error() + 
+    text('Node id ') + 
+    text(text=id, color='white', attrs=['bold']) +
+    text(' not found')
+  )
 
 def confirmation_delete(deleted):
-  if isinstance(deleted, Note):
-    type = text('Note ') 
-  elif isinstance(deleted, Task):
-    type = text('Task ')
-  elif isinstance(deleted, Board):
-    type = text('Board ')
-
-  return success() + type + text(deleted.id, color='white', attrs=['bold']) + text(' deleted')
+  return(
+    success() + 
+    text(utils.type_node(deleted)) + 
+    text(deleted.id, color='white', attrs=['bold']) + 
+    text(' deleted')
+  )
   
