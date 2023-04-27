@@ -1,5 +1,9 @@
 import datetime as dt
 
+from .note import Note
+from .task import Task
+from .board import Board
+
 def count_date(date):
     diference = dt.datetime.now().timestamp() - date
     
@@ -20,3 +24,12 @@ def count_date(date):
     elif diference >= 31536000:
       time = int(diference/31536000)
       return str(time)+'year'
+
+
+def type_node(node):
+  if isinstance(node, Note):
+    return 'Note'
+  elif isinstance(node, Task):
+    return 'Task'
+  elif isinstance(node, Board):
+    return 'Board'
