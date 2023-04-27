@@ -10,10 +10,10 @@ from .note import Note
 
 class Board():
 
-  def __init__(self, id, text, childrens=deque(), check=False, star=False):
+  def __init__(self, id, text, children=deque(), check=False, star=False):
     self.id = id
     self.text = text
-    self.childrens = childrens #subtasks path or tasks or notes
+    self.children = children #subtasks path or tasks or notes
     self.check = check
     self.star = star
     self.date = dt.datetime.now().timestamp()
@@ -30,21 +30,21 @@ class Board():
 
   def count_tasks(self):
     ct = 0
-    for child in self.childrens:
+    for child in self.children:
       if isinstance(child, Task):
         ct+=1
     return ct
   
   def count_notes(self):
     nt = 0
-    for child in self.childrens:
+    for child in self.children:
       if isinstance(child, Note):
         nt+=1
     return nt
 
   def count_checked_tasks(self):
     ctc = 0
-    for child in self.childrens:
+    for child in self.children:
       if isinstance(child, Task):
         if child.check: 
           ctc+=1
@@ -52,7 +52,7 @@ class Board():
 
   def count_started_tasks(self):
     cts = 0
-    for child in self.childrens:
+    for child in self.children:
       if isinstance(child, Task):
         if child.started: 
           cts+=1
