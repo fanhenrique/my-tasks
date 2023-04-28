@@ -159,7 +159,7 @@ class Tree():
   #           stack.append((child, level_current+1))
 
   
-  def _count_info_recursive(self, current, visited, func):
+  def _depth_first_count_info_recursive(self, current, visited, func):
     
     visited.append(current)
 
@@ -167,7 +167,7 @@ class Tree():
       x = 0
       for child in current.children:
         if child not in visited:
-          x += self._count_info_recursive(child, visited, func)
+          x += self._depth_first_count_info_recursive(child, visited, func)
       a = getattr(current, func)()
       return a + x
     
@@ -180,8 +180,8 @@ class Tree():
 
     if isinstance(current, Board):
       print(current.__str__(level=level, info=[
-          str(self._count_info_recursive(current, [], 'count_checked_tasks')),
-          str(self._count_info_recursive(current, [], 'count_tasks')),
+          str(self._depth_first_count_info_recursive(current, [], 'count_checked_tasks')),
+          str(self._depth_first_count_info_recursive(current, [], 'count_tasks')),
         ], date=True))
       
       for child in current.children:
@@ -200,10 +200,10 @@ class Tree():
     if isinstance(start, Board):
 
       a = (
-        self._count_info_recursive(start, [], 'count_tasks'),
-        self._count_info_recursive(start, [], 'count_checked_tasks'),
-        self._count_info_recursive(start, [], 'count_started_tasks'),            
-        self._count_info_recursive(start, [], 'count_notes'),      
+        self._depth_first_count_info_recursive(start, [], 'count_tasks'),
+        self._depth_first_count_info_recursive(start, [], 'count_checked_tasks'),
+        self._depth_first_count_info_recursive(start, [], 'count_started_tasks'),            
+        self._depth_first_count_info_recursive(start, [], 'count_notes'),      
       )
       
       complete=a[1]*100/(a[0])
