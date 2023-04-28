@@ -67,7 +67,7 @@ class Tree():
     
   def _delete_nodes(self, nodes=deque()):
     
-    for node in nodes:
+  def _depth_fist_delete_recursive(self, current, visited, id_nodes):
       father = self.search_father(self.root, node.id, [])
       
       for child in father.children:
@@ -80,30 +80,32 @@ class Tree():
     
     visited.append(current)
     
-    deleted = []
     if isinstance(current, Board):
+      deleted = []
       for child in current.children:      
         if child not in visited:
-          d = self._dfs_delete(child, visited, id_nodes)
+          if self._depth_fist_delete_recursive(child, visited, id_nodes):
+            deleted.append(child)
     
-        if d:
-          deleted.append(child)
-    
-    for child in deleted:
-      current.children.remove(child)
-      print(colored.confirmation_delete(child))
+      for child in deleted:
+        current.children.remove(child)
+        print(colored.confirmation_delete(child))
 
+    if current.id in id_nodes:
+      return True
+
+    return False
 
   def delete(self, ids=[]):
-  
-    self._dfs_delete(self.root, [], ids)
-  
-    # delete root
-    if self.root.id in ids: 
+    
+    self._depth_fist_delete_recursive(self.root, [], ids)
+    
+    #if id root in ids deleted 
+    if self.root.id in ids:
       print(colored.confirmation_delete(self.root))
       self.root = None
 
-
+    
   def search_father(self, current, id, visited):
   
     visited.append(current)  
@@ -120,7 +122,7 @@ class Tree():
             break
     return a
 
-  def _dfs_recursive(self, current, id, visited):
+  def _depth_first_search_recursive(self, current, id, visited):
 
     visited.append(current)
 
@@ -131,14 +133,14 @@ class Tree():
     if isinstance(current, Board):
       for child in current.children:
         if child not in visited:
-          a = self._dfs_recursive(child, id, visited)
+          a = self._depth_first_search_recursive(child, id, visited)
           if a:
             break
     return a
     
   def search(self, id):
     
-    dfs = self._dfs_recursive(self.root, id, [])
+    dfs = self._depth_first_search_recursive(self.root, id, [])
 
     if not dfs:
       print(colored.id_not_found(id))
