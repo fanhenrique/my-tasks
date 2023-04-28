@@ -41,27 +41,86 @@ class Tree():
                 )
         
 
-  def add(self, text, type, current=None):
-    if not current:
-      current = self.root
+
+  def add(self, text, type, id):
     
-    new = None
+    if id == None:
+      current = self.root
+    else:
+      current = self.search(id)
+    if not current:
+      return
+
     if type == 'note': 
-      new = Note(id=20, text=text)
+      new = Note(id=20, text=text) #TODO depois verificar primeiro id disponível
     elif type == 'task': 
-      new = Task(id=20, text=text)
+      new = Task(id=20, text=text) #TODO depois verificar primeiro id disponível
     elif type == 'board': 
-      new = Board(id=20, text=text)
+      new = Board(id=20, text=text) #TODO depois verificar primeiro id disponível
 
     if isinstance(current, Board):
-      current.childrens.append(new)
-      print(colored.confirmation_add(True, new))
+      current.children.append(new)
+      print(colored.confirmation_add(confirmation=True, new=new))
     else:
-      print(colored.confirmation_add(False, new))
+      print(colored.confirmation_add(confirmation=False, father=current, new=new))
 
     
+  def _delete_nodes(self, nodes=deque()):
     
-  def _search(self, current, id, visited):
+    for node in nodes:
+      father = self.search_father(self.root, node.id, [])
+      
+      for child in father.children:
+        if child.id == node.id:
+          father.children.remove(child)
+          print(colored.confirmation_delete(child))
+          break
+
+  def _dfs_delete(self, current, visited, id_nodes):
+    
+    visited.append(current)
+    
+    deleted = []
+    if isinstance(current, Board):
+      for child in current.children:      
+        if child not in visited:
+          d = self._dfs_delete(child, visited, id_nodes)
+    
+        if d:
+          deleted.append(child)
+    
+    for child in deleted:
+      current.children.remove(child)
+      print(colored.confirmation_delete(child))
+
+
+  def delete(self, ids=[]):
+  
+    self._dfs_delete(self.root, [], ids)
+  
+    # delete root
+    if self.root.id in ids: 
+      print(colored.confirmation_delete(self.root))
+      self.root = None
+
+
+  def search_father(self, current, id, visited):
+  
+    visited.append(current)  
+
+    a = None
+    if isinstance(current, Board):
+      for child in current.children:
+        if child.id == id:
+          return current
+      for child in current.children:    
+        if child not in visited:          
+          a = self.search_father(child, id, visited)
+          if a:
+            break
+    return a
+
+  def _dfs_recursive(self, current, id, visited):
 
     visited.append(current)
 
