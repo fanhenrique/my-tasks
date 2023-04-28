@@ -70,40 +70,44 @@ class Tree():
 
     a = None
     if isinstance(current, Board):
-      for child in current.childrens:
+      for child in current.children:
         if child not in visited:
-          a = self._search(child, id, visited)
+          a = self._dfs_recursive(child, id, visited)
           if a:
             break
     return a
     
-  def search(self, current, id):
-    if not current:
-      current = self.root
+  def search(self, id):
     
-    return self._search(current, id, [])
+    dfs = self._dfs_recursive(self.root, id, [])
+
+    if not dfs:
+      print(colored.id_not_found(id))
+      return None
+
+    return dfs
 
 
-  def print_tree_iterative(self, current=None):
+  # def print_tree_iterative(self, current=None):
 
-    if not current:
-      current = self.root
+  #   if not current:
+  #     current = self.root
 
-    level = 0
-    stack = deque([])
-    visited = [current]
-    stack.append((current, level))  
-    while stack:
+  #   level = 0
+  #   stack = deque([])
+  #   visited = [current]
+  #   stack.append((current, level))  
+  #   while stack:
       
-      current, level_current = stack.pop()
+  #     current, level_current = stack.pop()
       
-      print(current.__str__(level=level_current))
+  #     print(current.__str__(level=level_current))
 
-      if isinstance(current, Board):
-        for child in reversed(current.childrens):
-          if child not in visited:
-            visited.append(child)
-            stack.append((child, level_current+1))
+  #     if isinstance(current, Board):
+  #       for child in reversed(current.children):
+  #         if child not in visited:
+  #           visited.append(child)
+  #           stack.append((child, level_current+1))
 
   
   def _count_info_recursive(self, current, visited, func):
@@ -112,7 +116,7 @@ class Tree():
 
     if isinstance(current, Board):
       x = 0
-      for child in current.childrens:
+      for child in current.children:
         if child not in visited:
           x += self._count_info_recursive(child, visited, func)
       a = getattr(current, func)()
@@ -131,34 +135,38 @@ class Tree():
           str(self._count_info_recursive(current, [], 'count_tasks')),
         ], date=True))
       
-      for child in current.childrens:
+      for child in current.children:
         if child not in visited:
           self.print_tree_with_info_recursive(child, visited, level+1) 
     else:
       print(current.__str__(level, date=True))
   
 
-  def print_tree(self, current):
+  def print_tree(self, start):
+    if not start:
+      return
 
-    self.print_tree_with_info_recursive(current, [], 0)
+    self.print_tree_with_info_recursive(start, [], 0)
 
-    a = (
-      self._count_info_recursive(current, [], 'count_tasks'),
-      self._count_info_recursive(current, [], 'count_checked_tasks'),
-      self._count_info_recursive(current, [], 'count_started_tasks'),            
-      self._count_info_recursive(current, [], 'count_notes'),      
-    )
+    if isinstance(start, Board):
 
-    complete=a[1]*100/(a[0])
-    
-    print(colored.all_tree_info(
-      complete,
-      done=a[1], 
-      pending=a[0]-a[1],
-      started=a[2],
-      not_started=a[0]-(a[1]+a[2]),
-      notes=a[3],
-    ))
+      a = (
+        self._count_info_recursive(start, [], 'count_tasks'),
+        self._count_info_recursive(start, [], 'count_checked_tasks'),
+        self._count_info_recursive(start, [], 'count_started_tasks'),            
+        self._count_info_recursive(start, [], 'count_notes'),      
+      )
+      
+      complete=a[1]*100/(a[0])
+      
+      print(colored.all_tree_info(
+        complete,
+        done=a[1], 
+        pending=a[0]-a[1],
+        started=a[2],
+        not_started=a[0]-(a[1]+a[2]),
+        notes=a[3],
+      ))
     
     
 
