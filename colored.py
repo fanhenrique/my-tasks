@@ -127,7 +127,7 @@ def success():
 def confirmation_add(confirmation, father=None, new=None):
   
   if confirmation:
-    return success() + text(utils.type_node(new)) + text(new.id, color='white', attrs=['bold']) + text(' created')
+    return success() + text(utils.type_node(new)) + ' ' + text(new.id, color='white', attrs=['bold']) + text(' created')
   else:
     if father:
       if isinstance(father, Task):
@@ -148,7 +148,7 @@ def id_not_found(id):
 def confirmation_delete(deleted):
   return(
     success() + 
-    text(utils.type_node(deleted)) + 
+    text(utils.type_node(deleted)) + ' ' +
     text(deleted.id, color='white', attrs=['bold']) + 
     text(' deleted')
   )
