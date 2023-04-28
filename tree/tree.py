@@ -65,18 +65,8 @@ class Tree():
       print(colored.confirmation_add(confirmation=False, father=current, new=new))
 
     
-  def _delete_nodes(self, nodes=deque()):
     
   def _depth_fist_delete_recursive(self, current, visited, id_nodes):
-      father = self.search_father(self.root, node.id, [])
-      
-      for child in father.children:
-        if child.id == node.id:
-          father.children.remove(child)
-          print(colored.confirmation_delete(child))
-          break
-
-  def _dfs_delete(self, current, visited, id_nodes):
     
     visited.append(current)
     
