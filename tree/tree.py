@@ -117,14 +117,14 @@ class Tree():
     if current.id == id:
       return current
 
-    a = None
+    
     if isinstance(current, Board):
       for child in current.children:
         if child not in visited:
           a = self._depth_first_search_recursive(child, id, visited)
           if a:
-            break
-    return a
+            return a
+    return None
     
   def search(self, id):
     
