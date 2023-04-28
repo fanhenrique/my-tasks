@@ -10,15 +10,15 @@ class Tree():
 
   def __init__(self, root=None):
     self.root = Board(id=1, text='quadro1',
-                  childrens = deque([
+                  children = deque([
                     Task(id=12, text='tarefa6', started=True),              
                     Board(id=2, text='quadro2',
-                      childrens = deque([
+                      children = deque([
                         Task(id=5, text='tarefa1'),
                         Task(id=17, text='tarefa10', priority=1),
                         Task(id=10, text='tarefa4', started=True),
                         Board(id=7, text='quadro3', star=True,
-                          childrens = deque([
+                          children = deque([
                             Task(id=11, text='tarefa5', check=True),
                             Task(id=8, text='tarefa3', priority=1, started=True),
                             Task(id=16, text='tarefa11', priority=2, started=True),
@@ -31,7 +31,7 @@ class Tree():
                       ])
                     ),
                     Board(id=14, text='quadro4',
-                      childrens = deque([
+                      children = deque([
                         Task(id=15, text='tafera8', check=True)
                       ])
                     ),
