@@ -41,7 +41,6 @@ class Tree():
                 )
         
 
-
   def add(self, text, type, id):
     
     if id == None:
@@ -64,7 +63,6 @@ class Tree():
     else:
       print(colored.confirmation_add(confirmation=False, father=current, new=new))
 
-    
     
   def _depth_fist_delete_recursive(self, current, visited, id_nodes):
     
@@ -96,7 +94,7 @@ class Tree():
       self.root = None
 
     
-  def search_father(self, current, id, visited):
+  def _depth_first_search_father_recursive(self, current, id, visited):
   
     visited.append(current)  
 
@@ -107,7 +105,7 @@ class Tree():
           return current
       for child in current.children:    
         if child not in visited:          
-          a = self.search_father(child, id, visited)
+          a = self._depth_first_search_father_recursive(child, id, visited)
           if a:
             break
     return a
