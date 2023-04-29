@@ -64,35 +64,6 @@ class Tree():
       print(colored.confirmation_add(confirmation=False, father=current, new=new))
 
     
-  def _depth_fist_delete_recursive(self, current, visited, id_nodes):
-    
-    visited.append(current)
-    
-    if isinstance(current, Board):
-      deleted = []
-      for child in current.children:      
-        if child not in visited:
-          if self._depth_fist_delete_recursive(child, visited, id_nodes):
-            deleted.append(child)
-    
-      for child in deleted:
-        current.children.remove(child)
-        print(colored.confirmation_delete(child))
-
-    if current.id in id_nodes:
-      return True
-
-    return False
-
-  def delete(self, ids=[]):
-    
-    self._depth_fist_delete_recursive(self.root, [], ids)
-    
-    #if id root in ids deleted 
-    if self.root.id in ids:
-      print(colored.confirmation_delete(self.root))
-      self.root = None
-
   def change_priority(self, id, priority):
 
     try:
@@ -107,6 +78,42 @@ class Tree():
     except IndexError:
       print(colored.value_out_of_range())
       
+
+  def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
+    
+    visited.append(current)
+    
+    if isinstance(current, Board):
+      deleted = []
+      for child in current.children:      
+        if child not in visited:
+          if self._depth_fist_delete_recursive(child, visited, nodes_to_delete):
+            deleted.append(child)
+    
+      for child in deleted:
+        current.children.remove(child)
+        print(colored.confirmation_delete(child))
+
+    if current in nodes_to_delete:
+      return True
+
+    return False
+
+
+  def delete(self, ids=[]):
+    
+    #check if ids node is tree
+    nodes_to_delete = []
+    for id in ids:
+      nodes_to_delete.append(self.search(id))
+      
+    self._depth_fist_delete_recursive(self.root, [], nodes_to_delete)
+    
+    #if id root in ids deleted 
+    if self.root.id in ids:
+      print(colored.confirmation_delete(self.root))
+      self.root = None
+
 
   def _depth_first_search_father_recursive(self, current, id, visited):
   
@@ -124,14 +131,14 @@ class Tree():
             break
     return a
 
+
   def _depth_first_search_recursive(self, current, id, visited):
 
     visited.append(current)
 
     if current.id == id:
       return current
-
-    
+   
     if isinstance(current, Board):
       for child in current.children:
         if child not in visited:
@@ -140,6 +147,7 @@ class Tree():
             return a
     return None
     
+
   def search(self, id):
     
     dfs = self._depth_first_search_recursive(self.root, id, [])
@@ -231,6 +239,4 @@ class Tree():
         notes=a[3],
       ))
     
-    
-
     
