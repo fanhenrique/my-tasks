@@ -1,8 +1,8 @@
 import datetime as dt
 
-from .note import Note
-from .task import Task
-from .board import Board
+from tree.note import Note
+from tree.task import Task
+from tree.board import Board
 
 def count_date(date):
     diference = dt.datetime.now().timestamp() - date
