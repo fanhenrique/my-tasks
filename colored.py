@@ -166,3 +166,6 @@ def value_out_of_range():
     error() +
     text('Value out of range')
   )
+
+def only_tasks_have_priority():
+  return error() + text('Only tasks have priority')

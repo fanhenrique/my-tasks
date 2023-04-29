@@ -101,6 +101,8 @@ class Tree():
       if isinstance(changing, Task):
         if changing.change_priority(priority):
           print(colored.confirmation_change(changing))
+      else:
+        print(colored.only_tasks_have_priority())
     
     except IndexError:
       print(colored.value_out_of_range())
