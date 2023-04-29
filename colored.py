@@ -153,3 +153,16 @@ def confirmation_delete(deleted):
     text(' deleted')
   )
   
+def confirmation_change(changed):
+  return(
+    success() +
+    text(utils.type_node(changed)) + ' ' +
+    text(changed.id, color='white', attrs=['bold']) +
+    text(' changed')
+  )
+
+def value_out_of_range():
+  return(
+    error() +
+    text('Value out of range')
+  )

@@ -93,7 +93,19 @@ class Tree():
       print(colored.confirmation_delete(self.root))
       self.root = None
 
+  def change_priority(self, id, priority):
+
+    try:
+      changing = self.search(id)
+
+      if isinstance(changing, Task):
+        if changing.change_priority(priority):
+          print(colored.confirmation_change(changing))
     
+    except IndexError:
+      print(colored.value_out_of_range())
+      
+
   def _depth_first_search_father_recursive(self, current, id, visited):
   
     visited.append(current)  

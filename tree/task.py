@@ -2,6 +2,8 @@ import datetime as dt
 
 import colored as colored
 
+allowed_priorities = [0,1,2]
+
 class Task():
   def __init__(self, id, text, check=False, started=False, star=False, priority=0):
     self.id = id
@@ -21,3 +23,11 @@ class Task():
       (colored.star() if self.star else '')
     )
       
+  def change_priority(self, priority):
+
+    if priority not in allowed_priorities:
+      raise IndexError
+
+    self.priority = allowed_priorities[priority]
+ 
+    
