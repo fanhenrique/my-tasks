@@ -17,5 +17,8 @@ class Note():
       (colored.star() if self.star else '')
     )
 
+  def change_star(self):
+    self.star = not self.star
+
 
       

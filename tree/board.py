@@ -27,6 +27,9 @@ class Board():
       (colored.star() if self.star else '')
     )
 
+  def change_star(self):
+    self.star = not self.star
+
   def count_tasks(self):
     ct = 0
     for child in self.children:

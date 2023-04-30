@@ -23,6 +23,8 @@ class Task():
       (colored.star() if self.star else '')
     )
       
+  def change_text(self, text):
+    self.text = text
 
   def change_check(self):
     self.check = not self.check
