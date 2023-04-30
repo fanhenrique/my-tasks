@@ -23,6 +23,16 @@ class Task():
       (colored.star() if self.star else '')
     )
       
+
+  def change_check(self):
+    self.check = not self.check
+
+  def change_started(self):
+    self.started = not self.started
+
+  def change_star(self):
+    self.star = not self.star
+  
   def change_priority(self, priority):
 
     if priority not in allowed_priorities:
@@ -30,4 +40,3 @@ class Task():
 
     self.priority = allowed_priorities[priority]
  
-    
