@@ -10,11 +10,10 @@ from .note import Note
 
 class Board():
 
-  def __init__(self, id, text, children=deque(), check=False, star=False):
+  def __init__(self, id, text, children=deque(), star=False):
     self.id = id
     self.text = text
     self.children = children #subtasks path or tasks or notes
-    self.check = check
     self.star = star
     self.date = dt.datetime.now().timestamp()
 
