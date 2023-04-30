@@ -169,5 +169,11 @@ def value_out_of_range():
     text('Value out of range')
   )
 
-def only_tasks_have_priority():
-  return error() + text('Only tasks have priority')
+def only_tasks_have_priority(node):
+  return error() + text(utils.type_node(node)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks have priority')
+
+def only_tasks_can_be_started(node):
+  return error() + text(utils.type_node(node)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be started')
+
+def only_tasks_can_be_checked(node):
+  return error() + text(utils.type_node(node)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')
