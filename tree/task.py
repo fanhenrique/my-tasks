@@ -17,7 +17,7 @@ class Task():
 
   def __str__(self, level, date=False):
     return (
-      colored.id(id=self.id, level=level) + 
+      colored.indentation(id=self.id, level=level) + 
       colored.task(text=self.text, check=self.check, started=self.started, priority=self.priority) +
       (colored.date(date=self.date) if date else '') + 
       (colored.star() if self.star else '')

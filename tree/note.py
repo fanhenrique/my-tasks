@@ -11,7 +11,7 @@ class Note():
 
   def __str__(self, level, date=False):
     return (
-      colored.id(id=self.id, level=level) + 
+      colored.indentation(id=self.id, level=level) + 
       colored.note(text=self.text) + 
       (colored.date(date=self.date) if date else '') +
       (colored.star() if self.star else '')

@@ -32,7 +32,7 @@ def text(text, color='light_grey', attrs=['dark', 'bold']):
     attrs=attrs,
   )
 
-def id(id, level):
+def indentation(id, level):
   line = ''
   if level > 1:
     line += f'{pipe_icon}  '*(level-1)

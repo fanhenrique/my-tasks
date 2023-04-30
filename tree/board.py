@@ -21,7 +21,7 @@ class Board():
   def __str__(self, level, info=None, date=False):
     return (
       
-      colored.id(id=self.id, level=level) + 
+      colored.indentation(id=self.id, level=level) + 
       colored.board(self.text) +
       (colored.info(info[0], info[1]) if info else '') +
       (colored.date(self.date) if date else '') +
