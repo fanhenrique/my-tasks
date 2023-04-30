@@ -139,11 +139,11 @@ def confirmation_add(confirmation, father=None, new=None):
     
     return error() + error_node
 
-def id_not_found(id):
+def id_not_found(id_not_found):
   return(
     error() + 
     text('Node id ') + 
-    id(text=id) +
+    id(str(id_not_found)) +
     text(' not found')
   )
 
