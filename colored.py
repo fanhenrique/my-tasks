@@ -123,11 +123,13 @@ def error():
 def success():
   return tc.colored(text='SUCCESS ', color='green', attrs=['bold'])
 
+def id(text, color='white', attrs=['bold']):
+  return tc.colored(text=text, color=color, attrs=attrs)
 
 def confirmation_add(confirmation, father=None, new=None):
   
   if confirmation:
-    return success() + text(utils.type_node(new)) + ' ' + text(new.id, color='white', attrs=['bold']) + text(' created')
+    return success() + text(utils.type_node(new)) + ' ' + id(new.id) + text(' created')
   else:
     if father:
       if isinstance(father, Task):
@@ -141,7 +143,7 @@ def id_not_found(id):
   return(
     error() + 
     text('Node id ') + 
-    text(text=id, color='white', attrs=['bold']) +
+    id(text=id) +
     text(' not found')
   )
 
@@ -149,7 +151,7 @@ def confirmation_delete(deleted):
   return(
     success() + 
     text(utils.type_node(deleted)) + ' ' +
-    text(deleted.id, color='white', attrs=['bold']) + 
+    id(deleted.id) + 
     text(' deleted')
   )
   
@@ -157,7 +159,7 @@ def confirmation_change(changed):
   return(
     success() +
     text(utils.type_node(changed)) + ' ' +
-    text(changed.id, color='white', attrs=['bold']) +
+    id(changed.id) + 
     text(' changed')
   )
 
