@@ -163,10 +163,10 @@ def confirmation_change(changed):
     text(' changed')
   )
 
-def value_out_of_range():
+def priority_level_out_of_range():
   return(
     error() +
-    text('Value out of range')
+    text('Priority level out of range')
   )
 
 def only_tasks_have_priority(node):
