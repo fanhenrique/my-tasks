@@ -6,6 +6,8 @@ from tree.board import Board
 from tree.task import Task
 from tree.note import Note
 
+import utils 
+
 class Tree():
 
   def __init__(self, root=None):
@@ -268,5 +270,36 @@ class Tree():
         not_started=a[0]-(a[1]+a[2]),
         notes=a[3],
       ))
+
+
+  def _write(self, file, node):
     
+    file.write(f'{utils.type_node(node)} {node.id} {node.text} {node.date} {int(node.star)}')
+
+    if isinstance(node, Board):
+      file.write(f' {[child.id for child in node.children]}')
+    elif isinstance(node, Task):
+      file.write(f' {int(node.check)} {int(node.started)} {int(node.priority)}')
+
+    file.write('\n')  
+
+  def _save_recursive(self, file, current, visited):
     
+    visited.append(current)
+    
+    self._write(file, current)
+
+    if isinstance(current, Board):
+      for child in current.children:
+        if child not in visited:
+          self._save_recursive(file, child, visited)
+  
+  def save(self, file):
+    with open(file, 'w') as file:
+      self._save_recursive(file, self.root, [])
+      
+
+        
+
+    
+
