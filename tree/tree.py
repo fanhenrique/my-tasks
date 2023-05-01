@@ -100,6 +100,15 @@ class Tree():
       elif node:
         print(colored.only_tasks_can_be_checked(node))
 
+
+  def change_star(self, ids):
+    for id in ids:
+      node = self.search(id)
+
+      if node:
+        node.change_star()
+
+
   def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
     
     visited.append(current)
