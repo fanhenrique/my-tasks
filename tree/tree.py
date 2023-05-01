@@ -76,7 +76,7 @@ class Tree():
         print(colored.only_tasks_have_priority(node))
         
     except IndexError:
-      print(colored.value_out_of_range())
+      print(colored.priority_level_out_of_range())
       
 
   def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
