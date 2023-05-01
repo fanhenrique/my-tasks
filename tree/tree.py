@@ -89,6 +89,17 @@ class Tree():
       elif node:
         print(colored.only_tasks_can_be_started(node))
   
+
+  def change_check(self, ids):
+    
+    for id in ids:
+      node = self.search(id)
+      
+      if isinstance(node, Task):
+        node.change_check()
+      elif node:
+        print(colored.only_tasks_can_be_checked(node))
+
   def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
     
     visited.append(current)
