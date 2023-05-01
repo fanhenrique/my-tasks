@@ -79,6 +79,16 @@ class Tree():
       print(colored.priority_level_out_of_range())
       
 
+  def change_started(self, ids):
+    
+    for id in ids:
+      node = self.search(id)
+      
+      if isinstance(node, Task):
+        node.change_started()
+      elif node:
+        print(colored.only_tasks_can_be_started(node))
+  
   def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
     
     visited.append(current)
