@@ -3,11 +3,11 @@ import datetime as dt
 import colored as colored
 
 class Note():
-  def __init__(self, id, text, star=False):
+  def __init__(self, id, text, star=False, date=None):
     self.id = id
     self.text = text
     self.star = star
-    self.date = dt.datetime.now().timestamp()
+    self.date = date if date else dt.datetime.now().timestamp()
 
   def __str__(self, level, date=False):
     return (

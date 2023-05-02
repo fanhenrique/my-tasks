@@ -5,14 +5,14 @@ import colored as colored
 allowed_priorities = [0,1,2]
 
 class Task():
-  def __init__(self, id, text, check=False, started=False, star=False, priority=0):
+  def __init__(self, id, text, check=False, started=False, star=False, priority=0, date=None):
     self.id = id
     self.text = text
     self.check = check
     self.started = started
     self.star = star
     self.priority = priority
-    self.date = dt.datetime.now().timestamp()
+    self.date = date if date else dt.datetime.now().timestamp()
   
 
   def __str__(self, level, date=False):
