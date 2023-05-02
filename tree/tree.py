@@ -10,37 +10,38 @@ import utils
 
 class Tree():
 
-  def __init__(self, root=None):
-    self.root = Board(id=1, text='quadro1',
-                  children = deque([
-                    Task(id=12, text='tarefa6', started=True),              
-                    Board(id=2, text='quadro2',
-                      children = deque([
-                        Task(id=5, text='tarefa1'),
-                        Task(id=17, text='tarefa10', priority=1),
-                        Task(id=10, text='tarefa4', started=True),
-                        Board(id=7, text='quadro3', star=True,
-                          children = deque([
-                            Task(id=11, text='tarefa5', check=True),
-                            Task(id=8, text='tarefa3', priority=1, started=True),
-                            Task(id=16, text='tarefa11', priority=2, started=True),
-                            Note(id=9, text='nota3', star=True)
-                          ])
-                        ),                
-                        Task(id=13, text='tarefa7', priority=1, check=True),
-                        Task(id=18, text='tarefa9', priority=1),
-                        Note(id=6, text='nota1'),
-                      ])
-                    ),
-                    Board(id=14, text='quadro4',
-                      children = deque([
-                        Task(id=15, text='tafera8', check=True)
-                      ])
-                    ),
-                    Task(id=3, text='tarefa2', priority=2, star=True),
-                    Note(id=4, text='nota2'),
-                  ]),
-                )
+  def __init__(self, file):
+    self.root = self.read(file)
+    # self.root = Board(id=1, text='quadro1',
+    #               children = deque([
+    #                 Task(id=12, text='tarefa6', started=True),              
+    #                 Board(id=2, text='quadro2',
+    #                   children = deque([
+    #                     Task(id=5, text='tarefa1'),
+    #                     Task(id=17, text='tarefa10', priority=1),
+    #                     Task(id=10, text='tarefa4', started=True),
+    #                     Board(id=7, text='quadro3', star=True,
+    #                       children = deque([
+    #                         Task(id=11, text='tarefa5', check=True),
+    #                         Task(id=8, text='tarefa3', priority=1, started=True),
+    #                         Task(id=16, text='tarefa11', priority=2, started=True),
+    #                         Note(id=9, text='nota3', star=True)
+    #                       ])
+    #                     ),                
+    #                     Task(id=13, text='tarefa7', priority=1, check=True),
+    #                     Task(id=18, text='tarefa9', priority=1),
+    #                     Note(id=6, text='nota1'),
+    #                   ])
+    #                 ),
+    #                 Board(id=14, text='quadro4',
+    #                   children = deque([
+    #                     Task(id=15, text='tafera8', check=True)
+    #                   ])
+    #                 ),
+    #                 Task(id=3, text='tarefa2', priority=2, star=True),
+    #                 Note(id=4, text='nota2'),
+    #               ]),
+    #             )
         
 
   def add(self, text, type, id):
@@ -300,6 +301,34 @@ class Tree():
     with open(file, 'w') as file:
       self._save_recursive(file, self.root, [])
       
+
+  def _read_recursive(self, file):
+    
+    line = file.readline().split(' ')
+    type = line[0]
+    id = int(line[1])
+    text = line[2]
+    date = float(line[3])
+    star = int(line[4])
+    
+    if type == 'Board':
+      children = []
+      for _ in line[5:-1]:
+        children.append(self._read_recursive(file))
+  
+      node = Board(id=id, text=text, date=date, star=star, children=children)
+    elif type == 'Task':
+      node = Task(id=id, text=text, date=date, star=star, check=int(line[5]), started=int(line[6]), priority=int(line[7]))
+    elif type == 'Note':
+      node = Note(id=id, text=text, date=date, star=star)
+
+    return node
+
+
+  def read(self, file):
+    with open(file, 'r') as file:
+      return self._read_recursive(file)
+     
 
         
 
