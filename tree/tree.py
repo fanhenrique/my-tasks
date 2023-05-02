@@ -277,11 +277,13 @@ class Tree():
     file.write(f'{utils.type_node(node)} {node.id} {node.text} {node.date} {int(node.star)}')
 
     if isinstance(node, Board):
-      file.write(f' {[child.id for child in node.children]}')
+      for child in node.children:
+        file.write(f' {child.id}')
     elif isinstance(node, Task):
       file.write(f' {int(node.check)} {int(node.started)} {int(node.priority)}')
 
-    file.write('\n')  
+    file.write(' \n')
+      
 
   def _save_recursive(self, file, current, visited):
     
