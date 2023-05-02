@@ -313,8 +313,10 @@ class Tree():
     
     if type == 'Board':
       children = []
-      for _ in line[5:-1]:
-        children.append(self._read_recursive(file))
+      for id_child in line[5:-1]:
+        child = self._read_recursive(file)
+        if child.id == int(id_child):
+          children.append(child)
   
       node = Board(id=id, text=text, date=date, star=star, children=children)
     elif type == 'Task':
@@ -323,7 +325,6 @@ class Tree():
       node = Note(id=id, text=text, date=date, star=star)
 
     return node
-
 
   def read(self, file):
     with open(file, 'r') as file:
