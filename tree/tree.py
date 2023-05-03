@@ -47,10 +47,8 @@ class Tree():
 
   def add(self, text, type, id):
     
-    if id == None:
-      current = self.root
-    else:
-      current = self.search(id)
+    current = self.search(id) if id else self.root
+    
     if not current:
       return
 
