@@ -151,6 +151,7 @@ class Tree():
       print(colored.confirmation_delete(self.root))
       self.root = None
 
+    self.save()
 
   def _depth_first_search_father_recursive(self, current, id, visited):
   
