@@ -11,6 +11,7 @@ import utils
 class Tree():
 
   def __init__(self, file):
+    self.file = file
     self.root = self.read(file)
     # self.root = Board(id=1, text='quadro1',
     #               children = deque([
@@ -63,6 +64,7 @@ class Tree():
     if isinstance(current, Board):
       current.children.append(new)
       print(colored.confirmation_add(confirmation=True, new=new))
+      self.save()
     else:
       print(colored.confirmation_add(confirmation=False, father=current, new=new))
 
@@ -74,7 +76,8 @@ class Tree():
 
       if isinstance(node, Task):
         node.change_priority(priority)
-        print(colored.confirmation_change(node))        
+        print(colored.confirmation_change(node))
+        self.save()
       elif node:
         print(colored.only_tasks_have_priority(node))
         
@@ -89,6 +92,7 @@ class Tree():
       
       if isinstance(node, Task):
         node.change_started()
+        self.save()
       elif node:
         print(colored.only_tasks_can_be_started(node))
   
@@ -100,6 +104,7 @@ class Tree():
       
       if isinstance(node, Task):
         node.change_check()
+        self.save()
       elif node:
         print(colored.only_tasks_can_be_checked(node))
 
@@ -110,6 +115,7 @@ class Tree():
 
       if node:
         node.change_star()
+        self.save()
 
 
   def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
@@ -297,7 +303,9 @@ class Tree():
         if child not in visited:
           self._save_recursive(file, child, visited)
   
-  def save(self, file):
+  def save(self, file=None):
+    if not file:
+      file = self.file
     with open(file, 'w') as file:
       self._save_recursive(file, self.root, [])
       
