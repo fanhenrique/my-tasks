@@ -1,4 +1,5 @@
 from collections import deque
+import csv
 
 import colored as colored
 
@@ -7,6 +8,8 @@ from tree.task import Task
 from tree.note import Note
 
 import utils 
+
+header_csv = ['node', 'id', 'date', 'star', 'text', 'children', 'check', 'started', 'priority']
 
 class Tree():
 
