@@ -269,7 +269,8 @@ class Tree():
         self._depth_first_count_info_recursive(start, [], 'count_notes'),      
       )
       
-      complete=a[1]*100/(a[0])
+      
+      complete=a[1]*100/(a[0]) if a[0] else 0
       
       print(colored.all_tree_info(
         complete,
