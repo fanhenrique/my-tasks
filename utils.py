@@ -33,3 +33,13 @@ def type_node(node):
     return 'Task'
   elif isinstance(node, Board):
     return 'Board'
+
+
+def find_missing(x):
+  x.sort()
+  difference = list(set(range(x[0], x[-1]+1)).difference(x))
+  
+  return difference[0] if len(difference) else x[-1]+1
+  
+  
+  
