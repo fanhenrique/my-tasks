@@ -25,14 +25,13 @@ def count_date(date):
       time = int(diference/31536000)
       return str(time)+'year'
 
-
-def type_node(node):
+def string_type_node(node, first_upcase=False):
   if isinstance(node, Note):
-    return 'Note'
+    return 'Note' if first_upcase else 'note'
   elif isinstance(node, Task):
-    return 'Task'
+    return 'Task' if first_upcase else 'note'
   elif isinstance(node, Board):
-    return 'Board'
+    return 'Board' if first_upcase else 'note'
 
 
 def find_missing(x):
@@ -41,5 +40,4 @@ def find_missing(x):
   
   return difference[0] if len(difference) else x[-1]+1
   
-  
-  
+

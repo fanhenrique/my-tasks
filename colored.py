@@ -129,7 +129,7 @@ def id(text, color='white', attrs=['bold']):
 def confirmation_add(confirmation, father=None, new=None):
   
   if confirmation:
-    return success() + text(utils.type_node(new)) + ' ' + id(new.id) + text(' created')
+    return success() + text(utils.string_type_node(new, first_upcase=True)) + ' ' + id(new.id) + text(' created')
   else:
     if father:
       if isinstance(father, Task):
@@ -150,7 +150,7 @@ def id_not_found(id_not_found):
 def confirmation_delete(deleted):
   return(
     success() + 
-    text(utils.type_node(deleted)) + ' ' +
+    text(utils.string_type_node(deleted, first_upcase=True)) + ' ' +
     id(deleted.id) + 
     text(' deleted')
   )
@@ -158,7 +158,7 @@ def confirmation_delete(deleted):
 def confirmation_change(changed):
   return(
     success() +
-    text(utils.type_node(changed)) + ' ' +
+    text(utils.string_type_node(changed, first_upcase=True)) + ' ' +
     id(changed.id) + 
     text(' changed')
   )
@@ -170,10 +170,10 @@ def priority_level_out_of_range():
   )
 
 def only_tasks_have_priority(node):
-  return error() + text(utils.type_node(node)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks have priority')
+  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks have priority')
 
 def only_tasks_can_be_started(node):
-  return error() + text(utils.type_node(node)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be started')
+  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be started')
 
 def only_tasks_can_be_checked(node):
-  return error() + text(utils.type_node(node)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')
+  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')
