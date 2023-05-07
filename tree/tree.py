@@ -8,14 +8,13 @@ from tree.task import Task
 from tree.note import Note
 
 import utils 
-
-header_csv = ['node', 'id', 'date', 'star', 'text', 'children', 'check', 'started', 'priority']
+import read_write as rw
 
 class Tree():
 
   def __init__(self, file):
     self.file = file
-    self.root = self.read(file)
+    self.root = self.load(file)
     # self.root = Board(id=1, text='quadro1',
     #               children = deque([
     #                 Task(id=12, text='tarefa6', started=True),              
@@ -282,66 +281,27 @@ class Tree():
       ))
 
 
-  def _write(self, file, node):
-    
-    file.write(f'{utils.type_node(node)} {node.id} {node.text} {node.date} {int(node.star)}')
-
-    if isinstance(node, Board):
-      for child in node.children:
-        file.write(f' {child.id}')
-    elif isinstance(node, Task):
-      file.write(f' {int(node.check)} {int(node.started)} {int(node.priority)}')
-
-    file.write(' \n')
-      
-
-  def _save_recursive(self, file, current, visited):
-    
-    visited.append(current)
-    
-    self._write(file, current)
-
-    if isinstance(current, Board):
-      for child in current.children:
-        if child not in visited:
-          self._save_recursive(file, child, visited)
-  
   def save(self, file=None):
     if not file:
       file = self.file
-    with open(file, 'w') as file:
-      self._save_recursive(file, self.root, [])
+    
+    rw.write_file(file_name=file, node=self.root)
+
+
+  def load(self, file):    
+    
+    nodes = rw.read_file(file_name=file)
       
+    # mount adjacency
+    for node in nodes:
+      if isinstance(node, Board):        
+        for id_child in node.children:
+          for n in nodes:
+            if id_child == n.id:
+              node.children[node.children.index(id_child)] = n
 
-  def _read_recursive(self, file):
-    
-    line = file.readline().split(' ')
-    type = line[0]
-    id = int(line[1])
-    text = line[2]
-    date = float(line[3])
-    star = int(line[4])
-    
-    if type == 'Board':
-      children = []
-      for id_child in line[5:-1]:
-        child = self._read_recursive(file)
-        if child.id == int(id_child):
-          children.append(child)
+    return nodes[0]
   
-      node = Board(id=id, text=text, date=date, star=star, children=children)
-    elif type == 'Task':
-      node = Task(id=id, text=text, date=date, star=star, check=int(line[5]), started=int(line[6]), priority=int(line[7]))
-    elif type == 'Note':
-      node = Note(id=id, text=text, date=date, star=star)
-
-    return node
-
-  def read(self, file):
-    with open(file, 'r') as file:
-      return self._read_recursive(file)
-     
-
         
 
     
