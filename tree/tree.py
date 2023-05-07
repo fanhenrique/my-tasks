@@ -302,7 +302,17 @@ class Tree():
 
     return nodes[0]
   
-        
-
+  def _ids_used(self, ids, current, visited):
     
+    visited.append(current)
+    ids.append(current.id)
 
+    if isinstance(current, Board):
+      for child in current.children:
+        if child not in visited:
+          self._ids_used(ids, child, visited)
+
+    return ids
+
+  def _id_available(self):    
+    return utils.find_missing(self._ids_used([], self.root, []))
