@@ -49,24 +49,27 @@ class Tree():
 
   def add(self, text, type, id):
     
-    current = self.search(id) if id else self.root
+    #search father
+    father = self.search(id) if id else self.root
     
-    if not current:
+    if not father:
       return
 
+    #create node
     if type == 'note': 
-      new = Note(id=20, text=text) #TODO depois verificar primeiro id disponível
+      new = Note(id=self._id_available(), text=text)
     elif type == 'task': 
-      new = Task(id=20, text=text) #TODO depois verificar primeiro id disponível
+      new = Task(id=self._id_available(), text=text)
     elif type == 'board': 
-      new = Board(id=20, text=text) #TODO depois verificar primeiro id disponível
+      new = Board(id=self._id_available(), text=text)
 
-    if isinstance(current, Board):
-      current.children.append(new)
+    # add new node in children of father
+    if isinstance(father, Board):
+      father.children.append(new)
       print(colored.confirmation_add(confirmation=True, new=new))
       self.save()
     else:
-      print(colored.confirmation_add(confirmation=False, father=current, new=new))
+      print(colored.confirmation_add(confirmation=False, father=father, new=new))
 
     
   def change_priority(self, id, priority):
@@ -267,7 +270,6 @@ class Tree():
         self._depth_first_count_info_recursive(start, [], 'count_started_tasks'),            
         self._depth_first_count_info_recursive(start, [], 'count_notes'),      
       )
-      
       
       complete=a[1]*100/(a[0]) if a[0] else 0
       
