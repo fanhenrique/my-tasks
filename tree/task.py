@@ -11,7 +11,9 @@ class Task():
     self.check = check
     self.started = started
     self.star = star
-    self.priority = priority
+    if priority not in allowed_priorities:
+      raise IndexError
+    self.priority = priority 
     self.date = date if date else dt.datetime.now().timestamp()
   
 
