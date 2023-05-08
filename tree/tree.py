@@ -265,9 +265,9 @@ class Tree():
       print(current.__str__(level, date=True))
   
 
-  def print_tree(self, start):
+  def print_tree(self, start=None):
     if not start:
-      return
+      start = self.root
 
     self.print_tree_with_info_recursive(start, [], 0)
 
