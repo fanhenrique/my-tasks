@@ -144,35 +144,35 @@ class Tree():
 
   def delete(self, ids=[]):
     
-    #check if ids node is tree
+    #check if node ids in tree
     nodes_to_delete = []
     for id in ids:
       nodes_to_delete.append(self.search(id))
       
     self._depth_fist_delete_recursive(self.root, [], nodes_to_delete)
     
-    #if id root in ids deleted 
+    #if root id is in deleted ids
     if self.root.id in ids:
       print(colored.confirmation_delete(self.root))
       self.root = None
 
     self.save()
 
-  def _depth_first_search_father_recursive(self, current, id, visited):
+  # def _depth_first_search_father_recursive(self, current, id, visited):
   
-    visited.append(current)  
+  #   visited.append(current)  
 
-    a = None
-    if isinstance(current, Board):
-      for child in current.children:
-        if child.id == id:
-          return current
-      for child in current.children:    
-        if child not in visited:          
-          a = self._depth_first_search_father_recursive(child, id, visited)
-          if a:
-            break
-    return a
+  #   a = None
+  #   if isinstance(current, Board):
+  #     for child in current.children:
+  #       if child.id == id:
+  #         return current
+  #     for child in current.children:    
+  #       if child not in visited:          
+  #         a = self._depth_first_search_father_recursive(child, id, visited)
+  #         if a:
+  #           break
+  #   return a
 
 
   def _depth_first_search_recursive(self, current, id, visited):
@@ -293,7 +293,7 @@ class Tree():
   def load(self, file):    
     
     nodes = rw.read_file(file_name=file)
-      
+    
     # mount adjacency
     for node in nodes:
       if isinstance(node, Board):        
@@ -303,7 +303,8 @@ class Tree():
               node.children[node.children.index(id_child)] = n
 
     return nodes[0]
-  
+
+
   def _ids_used(self, ids, current, visited):
     
     visited.append(current)
@@ -315,6 +316,7 @@ class Tree():
           self._ids_used(ids, child, visited)
 
     return ids
+
 
   def _id_available(self):    
     return utils.find_missing(self._ids_used([], self.root, []))
