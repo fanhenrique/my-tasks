@@ -23,12 +23,12 @@ def read_file(file_name):
       star = int(row['star'])
       text = row['text']
       
-      if node == 'Board':
+      if node == 'board':
         print(id, type(row['children']), row['children'])
         children = [] if not row['children'] else [int(i) for i in row['children'].split(',')]
         nodes.append(Board(id=id, text=text, date=date, star=star, children=children))
       
-      elif node == 'Task':
+      elif node == 'task':
         nodes.append(Task(
           id=id, text=text, date=date, star=star,
           check=int(row['check']),
@@ -36,7 +36,7 @@ def read_file(file_name):
           priority=int(row['priority']),
         ))
         
-      elif node == 'Note':
+      elif node == 'note':
         nodes.append(Note(id=id, text=text, date=date, star=star))
     
     return nodes
