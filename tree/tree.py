@@ -248,7 +248,7 @@ class Tree():
     return 0
 
 
-  def print_tree_with_info_recursive(self, current, visited, level):
+  def _print_tree_with_info_recursive(self, current, visited, level):
     
     visited.append(current)
 
@@ -260,7 +260,7 @@ class Tree():
       
       for child in current.children:
         if child not in visited:
-          self.print_tree_with_info_recursive(child, visited, level+1) 
+          self._print_tree_with_info_recursive(child, visited, level+1) 
     else:
       print(current.__str__(level, date=True))
   
@@ -269,7 +269,7 @@ class Tree():
     if not start:
       start = self.root
 
-    self.print_tree_with_info_recursive(start, [], 0)
+    self._print_tree_with_info_recursive(start, [], 0)
 
     if isinstance(start, Board):
 
