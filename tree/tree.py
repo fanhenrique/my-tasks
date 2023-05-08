@@ -79,7 +79,7 @@ class Tree():
 
       if isinstance(node, Task):
         node.change_priority(priority)
-        print(colored.confirmation_change(node))
+        print(colored.confirmation_change_priority(node))
         self.save()
       elif node:
         print(colored.only_tasks_have_priority(node))

@@ -155,12 +155,12 @@ def confirmation_delete(deleted):
     text(' deleted')
   )
   
-def confirmation_change(changed):
+def confirmation_change_priority(changed):
   return(
     success() +
     text(utils.string_type_node(changed, first_upcase=True)) + ' ' +
     id(changed.id) + 
-    text(' changed')
+    text(' changed priority')
   )
 
 def priority_level_out_of_range():
