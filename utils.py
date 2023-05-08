@@ -29,9 +29,9 @@ def string_type_node(node, first_upcase=False):
   if isinstance(node, Note):
     return 'Note' if first_upcase else 'note'
   elif isinstance(node, Task):
-    return 'Task' if first_upcase else 'note'
+    return 'Task' if first_upcase else 'task'
   elif isinstance(node, Board):
-    return 'Board' if first_upcase else 'note'
+    return 'Board' if first_upcase else 'board'
 
 
 def find_missing(x):
