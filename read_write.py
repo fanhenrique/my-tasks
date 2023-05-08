@@ -47,16 +47,17 @@ def write_file(file_name, node):
     file.writeheader()
     save_recursive(file, node, [])
   
-  def save_recursive(file, current, visited):
-    
-    visited.append(current)
-    
-    write_row(file, current)
 
-    if isinstance(current, Board):
-      for child in current.children:
-        if child not in visited:
-          save_recursive(file, child, visited)
+def save_recursive(file, current, visited):
+  
+  visited.append(current)
+  
+  write_row(file, current)
+
+  if isinstance(current, Board):
+    for child in current.children:
+      if child not in visited:
+        save_recursive(file, child, visited)
 
 
 def write_row(file, node):
