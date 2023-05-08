@@ -18,8 +18,7 @@ class Board():
     self.date = date if date else dt.datetime.now().timestamp()
 
   def __str__(self, level, info=None, date=False):
-    return (
-      
+    return (      
       colored.indentation(id=self.id, level=level) + 
       colored.board(self.text) +
       (colored.info(info[0], info[1]) if info else '') +
@@ -29,6 +28,7 @@ class Board():
 
   def change_star(self):
     self.star = not self.star
+    return self.star
 
   def count_tasks(self):
     ct = 0

@@ -28,12 +28,15 @@ class Task():
 
   def change_check(self):
     self.check = not self.check
+    return self.check
 
   def change_started(self):
     self.started = not self.started
+    return self.started
 
   def change_star(self):
     self.star = not self.star
+    return self.star
   
   def change_priority(self, priority):
 

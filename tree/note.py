@@ -19,6 +19,6 @@ class Note():
 
   def change_star(self):
     self.star = not self.star
-
+    return self.star
 
       

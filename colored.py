@@ -147,7 +147,7 @@ def id_not_found(id_not_found):
     text(' not found')
   )
 
-def confirmation_delete(deleted):
+def success_deleted(deleted):
   return(
     success() + 
     text(utils.string_type_node(deleted, first_upcase=True)) + ' ' +
@@ -155,12 +155,12 @@ def confirmation_delete(deleted):
     text(' deleted')
   )
   
-def confirmation_change_priority(changed):
+def success_changed(changed, text_changed):
   return(
     success() +
     text(utils.string_type_node(changed, first_upcase=True)) + ' ' +
-    id(changed.id) + 
-    text(' changed priority')
+    id(changed.id) + ' ' +
+    text(text_changed)
   )
 
 def priority_level_out_of_range():

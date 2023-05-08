@@ -79,7 +79,7 @@ class Tree():
 
       if isinstance(node, Task):
         node.change_priority(priority)
-        print(colored.confirmation_change_priority(node))
+        print(colored.success_changed(node, 'changed priority'))
         self.save()
       elif node:
         print(colored.only_tasks_have_priority(node))
@@ -94,7 +94,10 @@ class Tree():
       node = self.search(id)
       
       if isinstance(node, Task):
-        node.change_started()
+        if node.change_started():
+          print(colored.success_changed(node, 'started'))
+        else:
+          print(colored.success_changed(node, 'not started'))
         self.save()
       elif node:
         print(colored.only_tasks_can_be_started(node))
@@ -106,7 +109,10 @@ class Tree():
       node = self.search(id)
       
       if isinstance(node, Task):
-        node.change_check()
+        if node.change_check():
+          print(colored.success_changed(node, 'check'))
+        else:
+          print(colored.success_changed(node, 'not check'))
         self.save()
       elif node:
         print(colored.only_tasks_can_be_checked(node))
@@ -117,7 +123,10 @@ class Tree():
       node = self.search(id)
 
       if node:
-        node.change_star()
+        if node.change_star():
+          print(colored.success_changed(node, 'star'))
+        else:
+          print(colored.success_changed(node, 'not star'))
         self.save()
 
 
@@ -134,7 +143,7 @@ class Tree():
     
       for child in deleted:
         current.children.remove(child)
-        print(colored.confirmation_delete(child))
+        print(colored.success_deleted(child))
 
     if current in nodes_to_delete:
       return True
@@ -153,7 +162,7 @@ class Tree():
     
     #if root id is in deleted ids
     if self.root.id in ids:
-      print(colored.confirmation_delete(self.root))
+      print(colored.success_deleted(self.root))
       self.root = None
 
     self.save()
