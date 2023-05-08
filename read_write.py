@@ -24,7 +24,6 @@ def read_file(file_name):
       text = row['text']
       
       if node == 'board':
-        print(id, type(row['children']), row['children'])
         children = [] if not row['children'] else [int(i) for i in row['children'].split(',')]
         nodes.append(Board(id=id, text=text, date=date, star=star, children=children))
       
