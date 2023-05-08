@@ -47,7 +47,7 @@ class Tree():
     #             )
         
 
-  def add(self, text, type, id):
+  def add(self, type, id, text, priority=0):
     
     #search father
     father = self.search(id) if id else self.root
@@ -55,22 +55,25 @@ class Tree():
     if not father:
       return
 
-    #create node
-    if type == 'note': 
-      new = Note(id=self._id_available(), text=text)
-    elif type == 'task': 
-      new = Task(id=self._id_available(), text=text)
-    elif type == 'board': 
-      new = Board(id=self._id_available(), text=text)
-
-    # add new node in children of father
-    if isinstance(father, Board):
-      father.children.append(new)
-      print(colored.confirmation_add(confirmation=True, new=new))
-      self.save()
-    else:
-      print(colored.confirmation_add(confirmation=False, father=father, new=new))
-
+    try:
+      #create node
+      if type == 'note': 
+        new = Note(id=self._id_available(), text=text)
+      elif type == 'task':
+        new = Task(id=self._id_available(), text=text, priority=priority)
+      elif type == 'board': 
+        new = Board(id=self._id_available(), text=text)
+    
+      # add new node in children of father
+      if isinstance(father, Board):
+        father.children.append(new)
+        print(colored.confirmation_add(confirmation=True, new=new))
+        self.save()
+      else:
+        print(colored.confirmation_add(confirmation=False, father=father, new=new))
+        
+    except IndexError:
+      print(colored.priority_level_out_of_range())
     
   def change_priority(self, id, priority):
 
