@@ -67,7 +67,7 @@ def write_row(file, node):
     children=','.join([str(child.id) for child in node.children])
 
   row = {
-    header_csv[0]: utils.type_node(node),
+    header_csv[0]: utils.string_type_node(node),
     header_csv[1]: node.id,
     header_csv[2]: node.date,
     header_csv[3]: int(node.star),
