@@ -1,7 +1,6 @@
 
 import termcolor as tc
 
-from tree.board import Board
 from tree.note import Note
 from tree.task import Task
 
@@ -17,7 +16,6 @@ started_icon = '\u25A3'
 task_icon = '\u25A1'
 note_icon = '\u25C9'
 
-
 def pipe(color='dark_grey', attrs=['dark', 'bold']):
   return tc.colored(
     text=f'{pipe_icon} ',
@@ -25,12 +23,14 @@ def pipe(color='dark_grey', attrs=['dark', 'bold']):
     attrs=attrs,
   )
 
+
 def text(text, color='light_grey', attrs=['dark', 'bold']):
   return tc.colored(
     text=text,
     color=color,
     attrs=attrs,
   )
+
 
 def indentation(id, level):
   line = ''
@@ -43,12 +43,14 @@ def indentation(id, level):
 
   return tc.colored(text=f'{line}{id}.', color='dark_grey', attrs=['bold'])
 
+
 def info(n1, n2):
   return tc.colored(
     text=f' [{n1}/{n2}]',
     color='dark_grey',
     attrs=['bold', 'dark'],
   )
+
 
 def date(date):
   return tc.colored(
@@ -57,11 +59,13 @@ def date(date):
     attrs=['dark'],
   )
 
+
 def star():  
   return tc.colored(
       text=f' {star_icon}',
       color='light_yellow',
     )
+
 
 def board(text):
   return (
@@ -77,6 +81,7 @@ def board(text):
     )
   )
 
+
 def task(text, check=False, started=False, priority=0):
   return (
     tc.colored(
@@ -90,6 +95,7 @@ def task(text, check=False, started=False, priority=0):
     )
   )
 
+
 def note(text):
   return (
     tc.colored(
@@ -101,6 +107,7 @@ def note(text):
       color='magenta',
     )
   )
+
 
 def all_tree_info(complete, done, pending, started, not_started, notes):
 
@@ -117,14 +124,18 @@ def all_tree_info(complete, done, pending, started, not_started, notes):
     tc.colored(text=f'{note_icon} {notes} ',color='magenta', attrs=['bold']) + text(text='notes')
   )
 
+
 def error():
   return tc.colored(text='ERROR ', color='light_red', attrs=['bold'])
+
 
 def success():
   return tc.colored(text='SUCCESS ', color='green', attrs=['bold'])
 
+
 def id(text, color='white', attrs=['bold']):
   return tc.colored(text=text, color=color, attrs=attrs)
+
 
 def confirmation_add(confirmation, father=None, new=None):
   
@@ -139,6 +150,7 @@ def confirmation_add(confirmation, father=None, new=None):
     
     return error() + error_node
 
+
 def id_not_found(id_not_found):
   return(
     error() + 
@@ -147,6 +159,7 @@ def id_not_found(id_not_found):
     text(' not found')
   )
 
+
 def success_deleted(deleted):
   return(
     success() + 
@@ -154,7 +167,8 @@ def success_deleted(deleted):
     id(deleted.id) + 
     text(' deleted')
   )
-  
+
+
 def success_changed(changed, text_changed):
   return(
     success() +
@@ -162,6 +176,7 @@ def success_changed(changed, text_changed):
     id(changed.id) + ' ' +
     text(text_changed)
   )
+
 
 def success_change_text(node):
   return success() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) +  text(' edited')
@@ -172,11 +187,14 @@ def priority_level_out_of_range():
     text('Priority level out of range')
   )
 
+
 def only_tasks_have_priority(node):
   return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks have priority')
 
+
 def only_tasks_can_be_started(node):
   return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be started')
+
 
 def only_tasks_can_be_checked(node):
   return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')

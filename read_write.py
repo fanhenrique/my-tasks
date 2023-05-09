@@ -40,6 +40,7 @@ def read_file(file_name):
     
     return nodes
 
+
 def write_file(file_name, node):
   with open(file_name, 'w') as csv_file:
     file = csv.DictWriter(csv_file, header_csv, delimiter=';')
@@ -77,4 +78,4 @@ def write_row(file, node):
     header_csv[8]: node.priority if isinstance(node, Task) else None,
   }
 
-  file.writerow(row)  
+  file.writerow(row)

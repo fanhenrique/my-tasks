@@ -25,6 +25,7 @@ def count_date(date):
       time = int(diference/31536000)
       return str(time)+'year'
 
+
 def string_type_node(node, first_upcase=False):
   if isinstance(node, Note):
     return 'Note' if first_upcase else 'note'
@@ -39,5 +40,3 @@ def find_missing(x):
   difference = list(set(range(x[0], x[-1]+1)).difference(x))
   
   return difference[0] if len(difference) else x[-1]+1
-  
-

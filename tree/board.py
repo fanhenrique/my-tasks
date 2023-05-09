@@ -17,6 +17,7 @@ class Board():
     self.star = star
     self.date = date if date else dt.datetime.now().timestamp()
 
+
   def __str__(self, level, info=None, date=False):
     return (      
       colored.indentation(id=self.id, level=level) + 
@@ -26,12 +27,15 @@ class Board():
       (colored.star() if self.star else '')
     )
 
+
   def change_text(self, text):
     self.text = text
+
 
   def change_star(self):
     self.star = not self.star
     return self.star
+
 
   def count_tasks(self):
     ct = 0
@@ -39,13 +43,15 @@ class Board():
       if isinstance(child, Task):
         ct+=1
     return ct
-  
+
+
   def count_notes(self):
     nt = 0
     for child in self.children:
       if isinstance(child, Note):
         nt+=1
     return nt
+
 
   def count_checked_tasks(self):
     ctc = 0
@@ -54,6 +60,7 @@ class Board():
         if child.check: 
           ctc+=1
     return ctc
+
 
   def count_started_tasks(self):
     cts = 0

@@ -71,7 +71,7 @@ class Tree():
         self.save()
       else:
         print(colored.confirmation_add(confirmation=False, father=father, new=new))
-        
+
     except IndexError:
       print(colored.priority_level_out_of_range())
     
