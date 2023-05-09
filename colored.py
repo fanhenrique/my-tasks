@@ -35,11 +35,11 @@ def text(text, color='light_grey', attrs=['dark', 'bold']):
 def indentation(id, level):
   line = ''
   if level > 1:
-    line += f'{pipe_icon}  '*(level-1)
+    line += f'{pipe_icon}   '*(level-1)
 
   if level > 0:
     line += pipe_icon
-    line += ' ' if id > 9 else '  '
+    line += '  ' if id > 9 else '   '
 
   return tc.colored(text=f'{line}{id}.', color='dark_grey', attrs=['bold'])
 
