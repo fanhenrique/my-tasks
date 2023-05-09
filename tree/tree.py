@@ -290,8 +290,11 @@ class Tree():
       a = (
         self._depth_first_count_info_recursive(start, [], 'count_tasks'),
         self._depth_first_count_info_recursive(start, [], 'count_checked_tasks'),
-        self._depth_first_count_info_recursive(start, [], 'count_started_tasks'),            
-        self._depth_first_count_info_recursive(start, [], 'count_notes'),      
+        self._depth_first_count_info_recursive(start, [], 'count_started_tasks'),
+        self._depth_first_count_info_recursive(start, [], 'count_tasks_priority0'),
+        self._depth_first_count_info_recursive(start, [], 'count_tasks_priority1'),
+        self._depth_first_count_info_recursive(start, [], 'count_tasks_priority2'),
+        self._depth_first_count_info_recursive(start, [], 'count_notes'),
       )
       
       complete=a[1]*100/(a[0]) if a[0] else 0
@@ -301,8 +304,10 @@ class Tree():
         done=a[1], 
         pending=a[0]-a[1],
         started=a[2],
-        not_started=a[0]-(a[1]+a[2]),
-        notes=a[3],
+        not_started_priority0 = a[3],
+        not_started_priority1 = a[4],
+        not_started_priority2 = a[5],
+        notes=a[6],
       ))
 
 

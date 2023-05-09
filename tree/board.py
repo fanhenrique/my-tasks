@@ -45,6 +45,33 @@ class Board():
     return ct
 
 
+  def count_tasks_priority0(self):
+    ctp0 = 0
+    for child in self.children:
+      if isinstance(child, Task):
+        if child.priority == 0 and not child.check and not child.started:
+          ctp0+=1
+    return ctp0
+
+
+  def count_tasks_priority1(self):
+    ctp1 = 0
+    for child in self.children:
+      if isinstance(child, Task):
+        if child.priority == 1 and not child.check and not child.started:
+          ctp1+=1
+    return ctp1
+
+
+  def count_tasks_priority2(self):
+    ctp2 = 0
+    for child in self.children:
+      if isinstance(child, Task):
+        if child.priority == 2 and not child.check and not child.started:
+          ctp2+=1
+    return ctp2
+
+
   def count_notes(self):
     nt = 0
     for child in self.children:

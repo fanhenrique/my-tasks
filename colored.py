@@ -109,7 +109,7 @@ def note(text):
   )
 
 
-def all_tree_info(complete, done, pending, started, not_started, notes):
+def all_tree_info(complete, done, pending, started, not_started_priority0, not_started_priority1, not_started_priority2, notes):
 
   return (
     tc.colored(text=f'\n{complete:.2f}% ', color='white', attrs=['bold']) +
@@ -117,10 +117,10 @@ def all_tree_info(complete, done, pending, started, not_started, notes):
     tc.colored(text=f'{check_icon} {done} ', color='light_green', attrs=['bold']) + text(text=f'done ') + pipe() +
     tc.colored(text=f'{pending} ', color='white', attrs=['bold']) + text(text='pending ') +
     tc.colored(text=f'{started_icon} {started} ', color='blue', attrs=['bold']) + text(text='started ') +
-    tc.colored(text=f'{task_icon} ', color=priority_color[0]) + 
-    tc.colored(text=f'{task_icon} ', color=priority_color[1]) +
-    tc.colored(text=f'{task_icon} ', color=priority_color[2]) +
-    tc.colored(text=f'{not_started} ', color='white', attrs=['bold']) + text(text=f'not started ') + pipe() +
+    tc.colored(text=f'{task_icon} {not_started_priority0} ', color=priority_color[0], attrs=['bold']) + 
+    tc.colored(text=f'{task_icon} {not_started_priority1} ', color=priority_color[1], attrs=['bold']) +
+    tc.colored(text=f'{task_icon} {not_started_priority2} ', color=priority_color[2], attrs=['bold']) +
+    text(text=f'not started ') + pipe() +
     tc.colored(text=f'{note_icon} {notes} ',color='magenta', attrs=['bold']) + text(text='notes')
   )
 
