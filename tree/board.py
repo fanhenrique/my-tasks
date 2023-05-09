@@ -26,6 +26,9 @@ class Board():
       (colored.star() if self.star else '')
     )
 
+  def change_text(self, text):
+    self.text = text
+
   def change_star(self):
     self.star = not self.star
     return self.star

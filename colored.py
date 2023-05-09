@@ -163,6 +163,9 @@ def success_changed(changed, text_changed):
     text(text_changed)
   )
 
+def success_change_text(node):
+  return success() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) +  text(' edited')
+
 def priority_level_out_of_range():
   return(
     error() +

@@ -21,4 +21,8 @@ class Note():
     self.star = not self.star
     return self.star
 
+  def change_text(self, text):
+    self.text = text
+    
+
       

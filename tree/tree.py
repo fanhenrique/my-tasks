@@ -133,6 +133,17 @@ class Tree():
         self.save()
 
 
+  def change_text(self, id, text):
+    node = self.search(id)
+
+    print(node.id, node.text)
+
+    if node:
+      node.change_text(text)
+      print(colored.success_change_text(node))
+      self.save()
+
+
   def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
     
     visited.append(current)
