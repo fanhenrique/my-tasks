@@ -11,7 +11,7 @@ class Note():
     self.date = date if date else dt.datetime.now().timestamp()
 
 
-  def __str__(self, level, date=False):
+  def __str__(self, level=0, date=False):
     return (
       colored.indentation(id=self.id, level=level) + 
       colored.note(text=self.text) + 

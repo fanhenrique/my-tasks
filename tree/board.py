@@ -18,7 +18,7 @@ class Board():
     self.date = date if date else dt.datetime.now().timestamp()
 
 
-  def __str__(self, level, info=None, date=False):
+  def __str__(self, level=0, info=None, date=False):
     return (      
       colored.indentation(id=self.id, level=level) + 
       colored.board(self.text) +
