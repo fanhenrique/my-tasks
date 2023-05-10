@@ -1,10 +1,13 @@
-
+import datetime as dt
 import termcolor as tc
 
 from tree.note import Note
 from tree.task import Task
 
 import utils
+
+week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 priority_color = {0:'white', 1:'light_yellow', 2:'light_red'}
 priority_attrs = {0:['bold'], 1:['bold'], 2:['bold', 'underline']}
@@ -181,6 +184,7 @@ def success_changed(changed, text_changed):
 def success_change_text(node):
   return success() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) +  text(' edited')
 
+
 def priority_level_out_of_range():
   return(
     error() +
@@ -198,3 +202,7 @@ def only_tasks_can_be_started(node):
 
 def only_tasks_can_be_checked(node):
   return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')
+
+
+def date_complete(date):
+  return text(f'{week[date.weekday()]} {months[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline'])
