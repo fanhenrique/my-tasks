@@ -1,5 +1,6 @@
 from collections import deque
-import csv
+
+import datetime as dt
 
 import colored as colored
 
@@ -348,3 +349,42 @@ class Tree():
 
   def _id_available(self):    
     return utils.find_missing(self._ids_used([], self.root, []))
+
+  def _nodes_tasks_notes(self, current, visited, nodes):
+  
+    visited.append(current)
+    
+    if not isinstance(current, Board):
+      nodes.append(current)
+
+    if isinstance(current, Board):
+      for child in current.children:
+        if child not in visited:
+          self._nodes_tasks_notes(child, visited, nodes)
+
+    return nodes
+
+  def timeline(self):
+
+    nodes = sorted(self._nodes_tasks_notes(self.root, [], []), key=lambda node: node.date)
+        
+    timeline = {}  
+    date_board = {}
+    for node in nodes:
+      date = dt.datetime.fromtimestamp(node.date).date()
+      x = utils.hash_timeline(timeline, date)
+
+      i = date_board.get(x)
+
+      if i is None:
+        date_board[x] = Board(id=x, text=date, children=[node])
+      else:
+        date_board[x].children.append(node)
+
+    for key, board in date_board.items():
+      # date = list(timeline.keys())[list(timeline.values()).index(key)]
+      print(colored.date_board(board.text, board.count_checked_tasks(), board.count_tasks()))
+      
+      for node in board.children:
+        print(node.__str__(level=1, date=True))
+      print()
