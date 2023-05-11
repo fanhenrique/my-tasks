@@ -15,7 +15,7 @@ class Tree():
 
   def __init__(self, file):
     self.file = file
-    self.root = self.load(file)
+    self.root = self._load()
     # self.root = Board(id=1, text='quadro1',
     #               children = deque([
     #                 Task(id=12, text='tarefa6', started=True),              
@@ -319,9 +319,9 @@ class Tree():
     rw.write_file(file_name=file, node=self.root)
 
 
-  def load(self, file):    
+  def _load(self):
     
-    nodes = rw.read_file(file_name=file)
+    nodes = rw.read_file(file_name=self.file)
     
     # mount adjacency
     for node in nodes:
