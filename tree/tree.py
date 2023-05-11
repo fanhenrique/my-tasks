@@ -382,7 +382,7 @@ class Tree():
         date_board[x].children.append(node)
 
     for key, board in date_board.items():
-      # date = list(timeline.keys())[list(timeline.values()).index(key)]
+      
       print(colored.date_board(board.text, board.count_checked_tasks(), board.count_tasks()))
       
       for node in board.children:
