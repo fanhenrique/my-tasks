@@ -73,7 +73,7 @@ def star():
 def board(text):
   return (
     tc.colored(
-      text='#',
+      text='@',
       color='green',
       attrs=['bold'],
     ) + 
