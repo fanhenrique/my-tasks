@@ -204,5 +204,8 @@ def only_tasks_can_be_checked(node):
   return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')
 
 
-def date_complete(date):
-  return text(f'{week[date.weekday()]} {months[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline'])
+def date_board(date, n1, n2):
+  return (
+    text(f'{week[date.weekday()]} {months[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline']) +  
+    info(n1, n2)
+  )
