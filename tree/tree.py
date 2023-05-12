@@ -225,7 +225,29 @@ class Tree():
 
     return dfs
 
+  def _depth_firt_search_board_recursive(self, current, name, visited):
+    
+    visited.append(current)
 
+    if isinstance(current, Board):
+      if current.text == name:
+        return current
+    
+      for child in current.children:
+        if child not in visited:
+          a = self._depth_firt_search_board_recursive(child, name, visited)
+          if a: return a
+
+    return None
+
+  def search_board_per_name(self, name):
+    dfsb = self._depth_firt_search_board_recursive(self.root, name, [])
+    if not dfsb:
+      print(colored.board_not_found_per_name(name))
+      return None
+
+    return dfsb  
+  
   # def print_tree_iterative(self, current=None):
 
   #   if not current:
