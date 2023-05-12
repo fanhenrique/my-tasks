@@ -216,3 +216,6 @@ def date_board(date, n1, n2):
     text(f'{week[date.weekday()]} {months[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline']) +  
     info(n1, n2)
   )
+
+def invalid_id(invalid):
+  return error() + text('id ') + id(invalid) + text(' not valid')
