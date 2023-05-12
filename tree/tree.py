@@ -224,6 +224,22 @@ class Tree():
 
     return dfs
 
+
+  def search(self, input):
+    if input is None:
+      return self.root
+    else:
+      if type(input) is str:
+        if input[0] == '@':
+          return self.search_board_per_name(input[1:])
+        else:
+          try:
+            return self.search_node(int(input))
+          except ValueError:                    
+            print(colored.invalid_id(input))
+            return 
+
+
   def _depth_firt_search_board_recursive(self, current, name, visited):
     
     visited.append(current)
