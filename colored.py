@@ -162,6 +162,13 @@ def id_not_found(id_not_found):
     text(' not found')
   )
 
+def board_not_found_per_name(name):
+   return(
+    error() +
+    text('Node with ') + 
+    id(name) + 
+    text(' name not found')
+   ) 
 
 def success_deleted(deleted):
   return(
