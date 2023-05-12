@@ -210,8 +210,7 @@ class Tree():
       for child in current.children:
         if child not in visited:
           a = self._depth_first_search_recursive(child, id, visited)
-          if a:
-            return a
+          if a: return a
     return None
     
 
