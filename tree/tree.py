@@ -48,11 +48,11 @@ class Tree():
     #             )
         
 
-  def add(self, type, id, text, priority=0):
+  def add(self, type, input, text, priority=0):
     
-    #search father
-    father = self.search(id) if id else self.root
-    
+    #search_node father
+    father = self.search(input) if id else self.root
+    print(father)
     if not father:
       return
 
@@ -76,10 +76,11 @@ class Tree():
     except IndexError:
       print(colored.priority_level_out_of_range())
     
+
   def change_priority(self, id, priority):
 
     try:
-      node = self.search(id)
+      node = self.search_node(id)
 
       if isinstance(node, Task):
         node.change_priority(priority)
@@ -95,7 +96,7 @@ class Tree():
   def change_started(self, ids):
     
     for id in ids:
-      node = self.search(id)
+      node = self.search_node(id)
       
       if isinstance(node, Task):
         if node.change_started():
@@ -110,7 +111,7 @@ class Tree():
   def change_check(self, ids):
     
     for id in ids:
-      node = self.search(id)
+      node = self.search_node(id)
       
       if isinstance(node, Task):
         if node.change_check():
@@ -124,7 +125,7 @@ class Tree():
 
   def change_star(self, ids):
     for id in ids:
-      node = self.search(id)
+      node = self.search_node(id)
 
       if node:
         if node.change_star():
@@ -134,10 +135,9 @@ class Tree():
         self.save()
 
 
-  def change_text(self, id, text):
-    node = self.search(id)
-
-    print(node.id, node.text)
+  def change_text(self, input, text):
+    
+    node = self.search(input)
 
     if node:
       node.change_text(text)
@@ -214,7 +214,7 @@ class Tree():
     return None
     
 
-  def search(self, id):
+  def search_node(self, id):
     
     dfs = self._depth_first_search_recursive(self.root, id, [])
 
@@ -256,7 +256,9 @@ class Tree():
     return None
 
   def search_board_per_name(self, name):
+    
     dfsb = self._depth_firt_search_board_recursive(self.root, name, [])
+    
     if not dfsb:
       print(colored.board_not_found_per_name(name))
       return None
