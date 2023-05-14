@@ -77,10 +77,10 @@ class Tree():
       print(colored.priority_level_out_of_range())
     
 
-  def change_priority(self, id, priority):
+  def change_priority(self, input, priority):
 
     try:
-      node = self.search_node(id)
+      node = self.search_node(input) #use the search_node function because checking is a Tasks only property
 
       if isinstance(node, Task):
         node.change_priority(priority)
@@ -96,7 +96,7 @@ class Tree():
   def change_started(self, ids):
     
     for id in ids:
-      node = self.search_node(id)
+      node = self.search_node(id) #use the search_node function because checking is a Tasks only property
       
       if isinstance(node, Task):
         if node.change_started():
@@ -111,7 +111,7 @@ class Tree():
   def change_check(self, ids):
     
     for id in ids:
-      node = self.search_node(id)
+      node = self.search_node(id) #use the search_node function because checking is a Tasks only property
       
       if isinstance(node, Task):
         if node.change_check():
