@@ -125,7 +125,7 @@ class Tree():
 
   def change_star(self, ids):
     for id in ids:
-      node = self.search_node(id)
+      node = self.search(id) #use the search function why star can on all nodes(Boards, Tasks, Notes)
 
       if node:
         if node.change_star():
@@ -137,7 +137,7 @@ class Tree():
 
   def change_text(self, input, text):
     
-    node = self.search(input)
+    node = self.search(input) #use the search function why change text can on all nodes(Boards, Tasks, Notes)
 
     if node:
       node.change_text(text)
