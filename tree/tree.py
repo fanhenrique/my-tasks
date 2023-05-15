@@ -321,6 +321,9 @@ class Tree():
 
   def print_tree(self, start=None):
     if not start:
+      if self.root is None:
+        print(colored.tree_empty())
+        return
       start = self.root
 
     self._print_tree_with_info_recursive(start, [], 0)
@@ -362,6 +365,9 @@ class Tree():
     
     nodes = rw.read_file(file_name=self.file)
     
+    if not nodes:
+      return None
+
     # mount adjacency
     for node in nodes:
       if isinstance(node, Board):        

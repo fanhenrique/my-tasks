@@ -219,3 +219,6 @@ def date_board(date, n1, n2):
 
 def invalid_id(invalid):
   return error() + text('id ') + id(invalid) + text(' not valid')
+
+def tree_empty():
+  return error() + text('Tree is empty')
