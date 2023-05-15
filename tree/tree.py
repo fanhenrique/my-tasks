@@ -52,7 +52,7 @@ class Tree():
     
     #search_node father
     father = self.search(input) if id else self.root
-    print(father)
+    
     if not father:
       return
 
