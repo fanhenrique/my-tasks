@@ -234,11 +234,10 @@ class Tree():
     if input is None:
       return self.root
     else:
-      if type(input) is str:
-        if input[0] == '@':
-          return self.search_board_per_name(input[1:])
-        else:          
-          return self.search_node(input)
+      if type(input) is str and input[0] == '@':  
+        return self.search_board_per_name(input[1:])
+      else:      
+        return self.search_node(input)
           
 
   def _depth_firt_search_board_recursive(self, current, name, visited):
