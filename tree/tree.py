@@ -216,10 +216,15 @@ class Tree():
 
   def search_node(self, id):
     
-    dfs = self._depth_first_search_recursive(self.root, id, [])
+    try:
+      dfs = self._depth_first_search_recursive(self.root, int(id), [])
 
-    if not dfs:
-      print(colored.id_not_found(id))
+      if not dfs:
+        print(colored.id_not_found(id))
+        return None
+
+    except ValueError:                    
+      print(colored.invalid_id(input))
       return None
 
     return dfs
@@ -232,13 +237,9 @@ class Tree():
       if type(input) is str:
         if input[0] == '@':
           return self.search_board_per_name(input[1:])
-        else:
-          try:
-            return self.search_node(int(input))
-          except ValueError:                    
-            print(colored.invalid_id(input))
-            return 
-
+        else:          
+          return self.search_node(input)
+          
 
   def _depth_firt_search_board_recursive(self, current, name, visited):
     
