@@ -61,6 +61,9 @@ def save_recursive(file, current, visited):
 
 
 def write_row(file, node):
+  if not node:
+    return
+  
   children = ''
 
   if isinstance(node, Board):  
