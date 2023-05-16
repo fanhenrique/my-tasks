@@ -222,3 +222,6 @@ def invalid_id(invalid):
 
 def tree_empty():
   return error() + text('Tree is empty')
+
+def first_node_must_be_board():
+  return error() + text('The first node must be a board')
