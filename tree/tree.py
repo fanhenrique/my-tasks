@@ -65,6 +65,17 @@ class Tree():
       elif type == 'board': 
         new = Board(id=self._id_available(), text=text)
     
+      #forces the first node to be a board
+      if not self.root and not father:
+        if isinstance(new, Board):
+          self.root = new
+          print(colored.confirmation_add(confirmation=True, new=new))
+          self.save()
+          return
+        else:
+          print(colored.first_node_must_be_board())
+          return
+
       # add new node in children of father
       if isinstance(father, Board):
         father.children.append(new)
