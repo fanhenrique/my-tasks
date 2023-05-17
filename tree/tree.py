@@ -224,6 +224,9 @@ class Tree():
 
   def search_node(self, id):
     
+    #return if not exists root 
+    if not self.root: return
+    
     try:
       dfs = self._depth_first_search_recursive(self.root, int(id), [])
 
