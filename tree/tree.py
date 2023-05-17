@@ -49,13 +49,10 @@ class Tree():
         
 
   def add(self, type, input, text, priority=0):
-    
+      
     #search_node father
-    father = self.search(input) if id else self.root
+    father = self.search(input) if input else self.root
     
-    if not father:
-      return
-
     try:
       #create node
       if type == 'note': 
