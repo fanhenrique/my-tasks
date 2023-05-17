@@ -145,7 +145,7 @@ class Tree():
       self.save()
 
 
-  def _depth_fist_delete_recursive(self, current, visited, nodes_to_delete):
+  def _depth_first_delete_recursive(self, current, visited, nodes_to_delete):
     
     visited.append(current)
     
@@ -153,7 +153,7 @@ class Tree():
       deleted = []
       for child in current.children:      
         if child not in visited:
-          if self._depth_fist_delete_recursive(child, visited, nodes_to_delete):
+          if self._depth_first_delete_recursive(child, visited, nodes_to_delete):
             deleted.append(child)
     
       for child in deleted:
