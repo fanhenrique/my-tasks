@@ -403,7 +403,12 @@ class Tree():
     return ids
 
 
-  def _id_available(self):    
+  def _id_available(self):
+
+    #if not exist root, return 1 as the first id
+    if not self.root:
+      return 1
+    
     return utils.find_missing(self._ids_used([], self.root, []))
 
   def _nodes_tasks_notes(self, current, visited, nodes):
