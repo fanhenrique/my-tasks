@@ -12,48 +12,80 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 </div>
 
 ## Install
-
 ## Usage
+
 
 ### Tree View
 
 ### Timeline View
 
 ### Help
+
   Use option `--help` for help
-    `python main.py --help` 
+  
+  ```
+  python main.py --help
+  ```
 
 ### Create Board
+
   To create a new board use the `--board`/`-b` option with your description following right after.
-    `python main.py --board my-board`
+    
+  ```
+  python main.py --board my-board
+  ```
 
 ### Create Task
+
   To create a new task use the `--task`/`-t` option with your description following right after.
-    `python main.py --task write document`
+  
+  ```
+  python main.py --task write document
+  ```
 
 ### Create Note
+
   To create a new note use the `--note`/`-t` option with your description following right after.
-    `python main.py --note caution with orthography at the document`
+    
+  ```
+  python main.py --note caution with orthography at the document
+  ```
 
 ### Delete Node
+
   To delete some node use the `--delete`/`-d` option followed by the ids of the nodes.
-    `python main.py --check 3 4 7 9`
+  
+  ```
+  python main.py --check 3 4 7 9
+  ```
 
 ### Edit Node
 ### Starred Node
 
 ### Checked Task
+
   To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the ids of the tasks.
-    `python main.py --check 2 3 5`
+    
+  ```
+  python main.py --check 2 3 5
+  ```
+
 ### Started Task
+
   To mark a task as started/not started, use the `--started`/`-s` option followed by the ids of the tasks.
-    `python main.py --check 2 3 5`
+  
+  ```
+  python main.py --check 2 3 5
+  ```
 
 ### Change priority level Task
+
   To change the priority level of a task, use the `--priority <level>`/`-p <level>` option. in this case it is necessary to indicate the id of the task
 
   - 0 - Default priority 
   - 1 - Low priority 
   - 2 - High priority 
 
-  `python main.py 4 --priority 1`
+  ```
+  python main.py 4 --priority 1
+  ```
