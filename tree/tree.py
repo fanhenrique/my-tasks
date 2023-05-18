@@ -179,7 +179,9 @@ class Tree():
   def search_node(self, id):
     
     #return if not exists root 
-    if not self.root: return
+    if not self.root: 
+      print(colored.tree_empty())
+      return
     
     try:
       dfs = self._depth_first_search_recursive(self.root, int(id), [])
