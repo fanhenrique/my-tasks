@@ -150,8 +150,8 @@ class Tree():
     nodes_to_delete = []
     for id in ids:
       nodes_to_delete.append(self.search(id))
-      
-    self._depth_fist_delete_recursive(self.root, [], nodes_to_delete)
+
+    self._depth_first_delete_recursive(self.root, [], nodes_to_delete)
     
     #if root is in nodes to deleted
     if self.root and self.root in nodes_to_delete:
