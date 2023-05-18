@@ -92,7 +92,7 @@ class Tree():
 
       if isinstance(node, Task):
         node.change_priority(priority)
-        print(colored.success_changed(node, 'changed priority'))
+        print(colored.success_changed_priority(node))
         self.save()
       elif node:
         print(colored.only_tasks_have_priority(node))
@@ -108,9 +108,9 @@ class Tree():
       
       if isinstance(node, Task):
         if node.change_started():
-          print(colored.success_changed(node, 'started'))
+          print(colored.success_changed_started(node))
         else:
-          print(colored.success_changed(node, 'not started'))
+          print(colored.success_changed_not_started(node))
         self.save()
       elif node:
         print(colored.only_tasks_can_be_started(node))
@@ -123,9 +123,9 @@ class Tree():
       
       if isinstance(node, Task):
         if node.change_check():
-          print(colored.success_changed(node, 'check'))
+          print(colored.success_changed_check(node))
         else:
-          print(colored.success_changed(node, 'not check'))
+          print(colored.success_changed_not_check(node))
         self.save()
       elif node:
         print(colored.only_tasks_can_be_checked(node))
@@ -137,9 +137,9 @@ class Tree():
 
       if node:
         if node.change_star():
-          print(colored.success_changed(node, 'star'))
+          print(colored.success_changed_star(node))
         else:
-          print(colored.success_changed(node, 'not star'))
+          print(colored.success_changed_not_star(node))
         self.save()
 
 

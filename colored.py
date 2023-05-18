@@ -179,17 +179,37 @@ def success_deleted(deleted):
   )
 
 
-def success_changed(changed, text_changed):
+def success_changed(node):
   return(
     success() +
-    text(utils.string_type_node(changed, first_upcase=True)) + ' ' +
-    id(changed.id) + ' ' +
-    text(text_changed)
+    text(utils.string_type_node(node, first_upcase=True)) + ' ' +
+    id(node.id)
   )
 
 
+def success_changed_priority(node):
+  return success_changed(node) + text(' changed priority')
+
+def success_changed_started(node):
+  return success_changed(node) + text(' started')
+
+def success_changed_not_started(node):
+  return success_changed(node) + text(' not started')
+
+def success_changed_check(node):
+  return success_changed(node) + text(' check')
+
+def success_changed_not_check(node):
+  return success_changed(node) + text(' not check')
+
+def success_changed_star(node):
+  return success_changed(node) + text(' star')
+
+def success_changed_not_star(node):
+  return success_changed(node) + text(' not star')
+
 def success_change_text(node):
-  return success() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) +  text(' edited')
+  return success_changed(node) +  text(' edited')
 
 
 def priority_level_out_of_range():
