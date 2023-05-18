@@ -153,8 +153,8 @@ class Tree():
       
     self._depth_fist_delete_recursive(self.root, [], nodes_to_delete)
     
-    #if root id is in deleted ids
-    if self.root.id in ids:
+    #if root is in nodes to deleted
+    if self.root and self.root in nodes_to_delete:
       print(colored.success_deleted(self.root))
       self.root = None
 
