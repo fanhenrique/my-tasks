@@ -16,36 +16,6 @@ class Tree():
   def __init__(self, file):
     self.file = file
     self.root = self._load()
-    # self.root = Board(id=1, text='quadro1',
-    #               children = deque([
-    #                 Task(id=12, text='tarefa6', started=True),              
-    #                 Board(id=2, text='quadro2',
-    #                   children = deque([
-    #                     Task(id=5, text='tarefa1'),
-    #                     Task(id=17, text='tarefa10', priority=1),
-    #                     Task(id=10, text='tarefa4', started=True),
-    #                     Board(id=7, text='quadro3', star=True,
-    #                       children = deque([
-    #                         Task(id=11, text='tarefa5', check=True),
-    #                         Task(id=8, text='tarefa3', priority=1, started=True),
-    #                         Task(id=16, text='tarefa11', priority=2, started=True),
-    #                         Note(id=9, text='nota3', star=True)
-    #                       ])
-    #                     ),                
-    #                     Task(id=13, text='tarefa7', priority=1, check=True),
-    #                     Task(id=18, text='tarefa9', priority=1),
-    #                     Note(id=6, text='nota1'),
-    #                   ])
-    #                 ),
-    #                 Board(id=14, text='quadro4',
-    #                   children = deque([
-    #                     Task(id=15, text='tafera8', check=True)
-    #                   ])
-    #                 ),
-    #                 Task(id=3, text='tarefa2', priority=2, star=True),
-    #                 Note(id=4, text='nota2'),
-    #               ]),
-    #             )
         
 
   def add(self, type, input, text, priority=0):
@@ -190,22 +160,6 @@ class Tree():
 
     self.save()
 
-  # def _depth_first_search_father_recursive(self, current, id, visited):
-  
-  #   visited.append(current)  
-
-  #   a = None
-  #   if isinstance(current, Board):
-  #     for child in current.children:
-  #       if child.id == id:
-  #         return current
-  #     for child in current.children:    
-  #       if child not in visited:          
-  #         a = self._depth_first_search_father_recursive(child, id, visited)
-  #         if a:
-  #           break
-  #   return a
-
 
   def _depth_first_search_recursive(self, current, id, visited):
 
@@ -276,27 +230,6 @@ class Tree():
 
     return dfsb  
   
-  # def print_tree_iterative(self, current=None):
-
-  #   if not current:
-  #     current = self.root
-
-  #   level = 0
-  #   stack = deque([])
-  #   visited = [current]
-  #   stack.append((current, level))  
-  #   while stack:
-      
-  #     current, level_current = stack.pop()
-      
-  #     print(current.__str__(level=level_current))
-
-  #     if isinstance(current, Board):
-  #       for child in reversed(current.children):
-  #         if child not in visited:
-  #           visited.append(child)
-  #           stack.append((child, level_current+1))
-
   
   def _depth_first_count_info_recursive(self, current, visited, func):
     
