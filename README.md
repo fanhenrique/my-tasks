@@ -49,7 +49,7 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
   To mark a task as started/not started, use the `--started`/`-s` option followed by the ids of the tasks.
     `python main.py --check 2 3 5`
 
-### Change prioirty level Task
+### Change priority level Task
   To change the priority level of a task, use the `--priority <level>`/`-p <level>` option. in this case it is necessary to indicate the id of the task
 
   - 0 - Default priority 
