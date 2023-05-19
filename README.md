@@ -1,6 +1,6 @@
 # MyTasks
 
-## Description
+### Description
 
 MyTasks allows you to simply and efficiently manage your tasks and notes from your terminal. You can also organize your tasks into subtasks (boards). All this using a simple and minimal syntax.
 
@@ -12,6 +12,9 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 </div>
 
 ## Install
+
+  Clone this repository
+
 ## Usage
 
 
@@ -53,10 +56,10 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 
 ### Delete Node
 
-  To delete some node use the `--delete`/`-d` option followed by the ids of the nodes.
+  To delete some node use the `--delete`/`-d` option followed by the list of ids of the nodes.
   
   ```
-  python main.py --check 3 4 7 9
+  python main.py --delete 3 4 7 9
   ```
 
 ### Edit Node
@@ -64,7 +67,7 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 
 ### Checked Task
 
-  To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the ids of the tasks.
+  To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the list of ids of the tasks.
     
   ```
   python main.py --check 2 3 5
@@ -72,10 +75,10 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 
 ### Started Task
 
-  To mark a task as started/not started, use the `--started`/`-s` option followed by the ids of the tasks.
+  To mark a task as started/not started, use the `--started`/`-s` option followed by the list of ids of the tasks.
   
   ```
-  python main.py --check 2 3 5
+  python main.py --started 2 3 5
   ```
 
 ### Change priority level Task
