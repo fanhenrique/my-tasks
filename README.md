@@ -1,6 +1,6 @@
 # MyTasks
 
-#### Description
+### Description
 MyTasks allows you to simply and efficiently manage your tasks and notes from your terminal. You can also organize your tasks into subtasks (boards). All this using a simple and minimal syntax.
 
 ### Structure
@@ -62,7 +62,20 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
   ```
 
 ### Edit Node
+
+  To edit some node use the `--edit`/`-e` option followed by the list of ids of the nodes. In this case it is necessary to indicate the id of the task
+  
+  ```
+  python main.py 3 --edit new name node
+  ```
+
 ### Starred Node
+
+  To mark a node as starred, use the `--star`/`-x` option followed by the list of ids of the tasks.
+    
+  ```
+  python main.py --star 2 3 5
+  ```
 
 ### Checked Task
 
@@ -82,7 +95,7 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 
 ### Change priority level Task
 
-  To change the priority level of a task, use the `--priority <level>`/`-p <level>` option. in this case it is necessary to indicate the id of the task
+  To change the priority level of a task, use the `--priority <level>`/`-p <level>` option. In this case it is necessary to indicate the id of the task
 
   - 0 - Default priority 
   - 1 - Low priority 
