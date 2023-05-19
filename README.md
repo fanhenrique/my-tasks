@@ -1,7 +1,6 @@
 # MyTasks
 
 #### Description
-
 MyTasks allows you to simply and efficiently manage your tasks and notes from your terminal. You can also organize your tasks into subtasks (boards). All this using a simple and minimal syntax.
 
 ### Structure
