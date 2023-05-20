@@ -140,12 +140,12 @@ def id(text, color='white', attrs=['bold']):
   return tc.colored(text=text, color=color, attrs=attrs)
 
 
-def confirmation_add(confirmation, father=None, new=None):
-  
-  if confirmation:
+def confirmation_add(new=None):
+  if new:
     return success() + text(utils.string_type_node(new, first_upcase=True)) + ' ' + id(new.id) + text(' created')
-  else:
+  
 def cannot_add_new_node(father=None):
+  if father:
     if isinstance(father, Task):
       error_node = text(text='Cannot add a new node in a task')
     if isinstance(father, Note):

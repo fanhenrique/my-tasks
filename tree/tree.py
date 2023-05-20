@@ -36,7 +36,7 @@ class Tree():
       if not self.root and not father:
         if isinstance(new, Board):
           self.root = new
-          print(colored.confirmation_add(confirmation=True, new=new))
+          print(colored.confirmation_add(new=new))
           self.save()
           return
         else:
@@ -46,7 +46,7 @@ class Tree():
       # add new node in children of father
       if isinstance(father, Board):
         father.children.append(new)
-        print(colored.confirmation_add(confirmation=True, new=new))
+        print(colored.confirmation_add(new=new))
         self.save()
       else:
         print(colored.cannot_add_new_node(father=father))
