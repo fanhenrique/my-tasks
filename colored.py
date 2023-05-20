@@ -145,13 +145,13 @@ def confirmation_add(confirmation, father=None, new=None):
   if confirmation:
     return success() + text(utils.string_type_node(new, first_upcase=True)) + ' ' + id(new.id) + text(' created')
   else:
-    if father:
-      if isinstance(father, Task):
-        error_node = text(text='Cannot add a new node in a task')
-      if isinstance(father, Note):
-        error_node = text(text='Cannot add a new node in a note')
-    
-    return error() + error_node
+def cannot_add_new_node(father=None):
+    if isinstance(father, Task):
+      error_node = text(text='Cannot add a new node in a task')
+    if isinstance(father, Note):
+      error_node = text(text='Cannot add a new node in a note')
+  
+  return error() + error_node
 
 
 def id_not_found(id_not_found):
