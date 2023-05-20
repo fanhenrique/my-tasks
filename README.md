@@ -7,12 +7,15 @@ MyTasks allows you to simply and efficiently manage your tasks and notes from yo
 MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and the branches are the boards.
 
 <div align="center">
-  <img alt="structure" width="60%" src="structure.svg"/>
+  <img alt="structure" width="50%" src="structure.svg"/>
 </div>
 
 ## Install
 
-  Clone this repository
+  Clone this repository.
+  ```
+  git clone https://github.com/fanhenrique/my-tasks.git
+  ```
 
 ## Usage
 
@@ -23,7 +26,7 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 
 ### Help
 
-  Use option `--help` for help
+  Use option `--help` for help.
   
   ```
   python main.py --help
@@ -63,7 +66,7 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 
 ### Edit Node
 
-  To edit some node use the `--edit`/`-e` option followed by the list of ids of the nodes. In this case it is necessary to indicate the id of the task
+  To edit some node use the `--edit`/`-e` option followed by the list of ids of the nodes. In this case it is necessary to indicate the id of the node
   
   ```
   python main.py 3 --edit new name node
