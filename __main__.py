@@ -1,5 +1,7 @@
 import argparse
 
+from pathlib import Path 
+
 from tree.tree import Tree
 
 def main():
@@ -23,12 +25,12 @@ def main():
 
   if args.file:
     with open('my-tasks/trees.txt', 'w') as file:
-      file.write(args.file)
+      file.write(str(Path.home())+'/my-tasks/'+args.file)
   else:
     with open('my-tasks/trees.txt', 'r') as file:
       tree_name = file.readline()
     
-    tree=Tree('my-tasks/'+tree_name)
+    tree=Tree(tree_name)
   
     # print(args._get_kwargs())    
     
