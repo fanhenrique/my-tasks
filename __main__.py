@@ -4,6 +4,10 @@ from pathlib import Path
 
 from tree.tree import Tree
 
+CURRENT_TREE = 'my-tasks/trees.txt'
+
+PATH_DIRWORK = str(Path.home())+'/my-tasks/'
+
 def main():
 
   parser = argparse.ArgumentParser(description='My Tasks')
@@ -24,15 +28,30 @@ def main():
   args = parser.parse_args()
 
   if args.file:
-    with open('my-tasks/trees.txt', 'w') as file:
-      file.write(str(Path.home())+'/my-tasks/'+args.file)
-  else:
-    with open('my-tasks/trees.txt', 'r') as file:
-      tree_name = file.readline()
+
+    #check if work dir exists else create work dir 
+    if not Path(PATH_DIRWORK).is_dir():
+      Path(PATH_DIRWORK).mkdir(parents=True, exist_ok=True)
     
-    tree=Tree(tree_name)
+    path_tree = Path(PATH_DIRWORK+args.file)
+
+    with open(CURRENT_TREE, 'w') as current_tree:
+      
+      if not path_tree.is_file():
+        open(path_tree, 'w').close()        
+        print('NEW TREE CREATE in', path_tree) # TODO create new mesage in colored 
+
+      current_tree.write(path_tree.__str__())
+    
   
-    # print(args._get_kwargs())    
+  else:
+    with open(CURRENT_TREE, 'r') as file:
+      path_tree = file.readline()
+    
+    tree=Tree(path_tree)  
+  
+  #remove later
+  print(args._get_kwargs())    
     
   if args.timeline:
     tree.timeline()
