@@ -1,5 +1,8 @@
 import csv
 
+import os
+from pathlib import Path
+
 from tree.task import Task
 from tree.note import Note
 from tree.board import Board
@@ -12,6 +15,10 @@ def read_file(file_name):
 
   with open(file_name, 'r') as csv_file:
     file = csv.DictReader(csv_file, header_csv, delimiter=';')
+
+    #if file is empty return
+    if os.path.getsize(Path(file_name))==0:
+     return
 
     next(file) # skip header
 
