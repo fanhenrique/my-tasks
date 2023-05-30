@@ -4,14 +4,14 @@ import colored as colored
 
 class Note():
 
-  def __init__(self, id, text, star=False, date=None):
+  def __init__(self, id:int, text:str, star:bool=False, date:float=None):
     self.id = id
     self.text = text
     self.star = star
     self.date = date if date else dt.datetime.now().timestamp()
 
 
-  def __str__(self, level=0, date=False):
+  def __str__(self, level:int=0 , date:bool=False):
     return (
       colored.indentation(id=self.id, level=level) + 
       colored.note(text=self.text) + 
@@ -25,7 +25,7 @@ class Note():
     return self.star
 
 
-  def change_text(self, text):
+  def change_text(self, text:str):
     self.text = text
     
 
