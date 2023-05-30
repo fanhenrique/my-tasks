@@ -253,10 +253,10 @@ class Tree():
     visited.append(current)
 
     if isinstance(current, Board):
-      print(current.__str__(level=level, info=[
+      print(current.__str__(level=level, info=(
           str(self._depth_first_count_info_recursive(current, [], 'count_checked_tasks')),
           str(self._depth_first_count_info_recursive(current, [], 'count_tasks')),
-        ], show_date=True))
+      ), show_date=True))
       
       for child in current.children:
         if child not in visited:

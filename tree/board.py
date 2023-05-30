@@ -10,7 +10,7 @@ from .note import Note
 
 class Board():
 
-  def __init__(self, id, text, children=deque(), star=False, date=None):
+  def __init__(self, id:int, text:str, children:deque=deque(), star:bool=False, date:float=None):
     self.id = id
     self.text = text
     self.children = children #subtasks path or tasks or notes
@@ -18,7 +18,7 @@ class Board():
     self.date = date if date else dt.datetime.now().timestamp()
 
 
-  def __str__(self, level=0, info=None, show_date=False):
+  def __str__(self, level:int=0, info:tuple=None, show_date:bool=False):
     return (      
       colored.indentation(id=self.id, level=level) + 
       colored.board(self.text) +
@@ -28,7 +28,7 @@ class Board():
     )
 
 
-  def change_text(self, text):
+  def change_text(self, text:str):
     self.text = text
 
 
