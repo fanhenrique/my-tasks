@@ -6,7 +6,7 @@ allowed_priorities = [0,1,2]
 
 class Task():
   
-  def __init__(self, id, text, check=False, started=False, star=False, priority=0, date=None):
+  def __init__(self, id:int, text:str, check:bool=False, started:bool=False, star:bool=False, priority:int=0, date:float=None):
     self.id = id
     self.text = text
     self.check = check
@@ -18,7 +18,7 @@ class Task():
     self.date = date if date else dt.datetime.now().timestamp()
   
 
-  def __str__(self, level=0, date=False):
+  def __str__(self, level:int=0, date:bool=False):
     return (
       colored.indentation(id=self.id, level=level) + 
       colored.task(text=self.text, check=self.check, started=self.started, priority=self.priority) +
@@ -27,7 +27,7 @@ class Task():
     )
   
 
-  def change_text(self, text):
+  def change_text(self, text:str):
     self.text = text
 
 
@@ -46,7 +46,7 @@ class Task():
     return self.star
 
 
-  def change_priority(self, priority):
+  def change_priority(self, priority:int):
 
     if priority not in allowed_priorities:
       raise IndexError
