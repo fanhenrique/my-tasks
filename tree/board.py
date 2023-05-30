@@ -18,12 +18,12 @@ class Board():
     self.date = date if date else dt.datetime.now().timestamp()
 
 
-  def __str__(self, level=0, info=None, date=False):
+  def __str__(self, level=0, info=None, show_date=False):
     return (      
       colored.indentation(id=self.id, level=level) + 
       colored.board(self.text) +
       (colored.info(info[0], info[1]) if info else '') +
-      (colored.date(self.date) if date else '') +
+      (colored.date(self.date) if show_date else '') +
       (colored.star() if self.star else '')
     )
 

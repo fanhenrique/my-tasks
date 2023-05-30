@@ -256,13 +256,13 @@ class Tree():
       print(current.__str__(level=level, info=[
           str(self._depth_first_count_info_recursive(current, [], 'count_checked_tasks')),
           str(self._depth_first_count_info_recursive(current, [], 'count_tasks')),
-        ], date=True))
+        ], show_date=True))
       
       for child in current.children:
         if child not in visited:
           self._print_tree_with_info_recursive(child, visited, level+1) 
     else:
-      print(current.__str__(level, date=True))
+      print(current.__str__(level, show_date=True))
   
 
   def print_tree(self, start=None):
