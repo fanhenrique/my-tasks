@@ -379,5 +379,5 @@ class Tree():
       print(colored.date_board(board.text, board.count_checked_tasks(), board.count_tasks()))
       
       for node in board.children:
-        print(node.__str__(level=1, date=True))
+        print(node.__str__(level=1, show_date=True))
       print()
