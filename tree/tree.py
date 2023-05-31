@@ -1,16 +1,12 @@
-from collections import deque
-
 import datetime as dt
 
-import colored as colored
-
-from tree.board import Board
-from tree.task import Task
-from tree.note import Note
-
+import colored
 import utils 
 import read
 import write
+from tree.board import Board
+from tree.task import Task
+from tree.note import Note
 
 class Tree():
 

@@ -1,7 +1,4 @@
-import datetime as dt
-
-import colored as colored
-
+import colored
 from .node import Node
 
 allowed_priorities = [0,1,2]

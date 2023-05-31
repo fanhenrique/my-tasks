@@ -2,15 +2,15 @@ import os
 import csv
 from pathlib import Path
 
+import utils
 from tree.task import Task
 from tree.note import Note
 from tree.board import Board
-from utils import HEADER_CSV
 
 def read_file(file_name):
 
   with open(file_name, 'r') as csv_file:
-    file = csv.DictReader(csv_file, HEADER_CSV, delimiter=';')
+    file = csv.DictReader(csv_file, utils.HEADER_CSV, delimiter=';')
 
     #if file is empty return
     if os.path.getsize(Path(file_name))==0:

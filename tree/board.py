@@ -1,9 +1,6 @@
-import datetime as dt
-
 from collections import deque
 
-import colored as colored
-
+import colored
 from .task import Task
 from .note import Note
 from .node import Node
