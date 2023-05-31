@@ -6,17 +6,14 @@ import colored as colored
 
 from .task import Task
 from .note import Note
+from .node import Node
 
-
-class Board():
+class Board(Node):
 
   def __init__(self, id:int, text:str, children:deque=deque(), star:bool=False, date:float=None):
-    self.id = id
-    self.text = text
+    super().__init__(id, text, star, date)
     self.children = children #subtasks path or tasks or notes
-    self.star = star
-    self.date = date if date else dt.datetime.now().timestamp()
-
+    
 
   def __str__(self, level:int=0, info:tuple=None, show_date:bool=False):
     return (      
@@ -26,15 +23,6 @@ class Board():
       (colored.date(self.date) if show_date else '') +
       (colored.star() if self.star else '')
     )
-
-
-  def change_text(self, text:str):
-    self.text = text
-
-
-  def change_star(self):
-    self.star = not self.star
-    return self.star
 
 
   def count_tasks(self):
