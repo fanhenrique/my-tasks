@@ -4,9 +4,11 @@ from pathlib import Path
 
 from tree.tree import Tree
 
-CURRENT_TREE = 'my-tasks/trees.txt'
+CURRENT_DIR = Path(__file__).parent.absolute()
 
-PATH_DIRWORK = str(Path.home())+'/my-tasks/'
+CURRENT_TREE = Path(str(CURRENT_DIR)+'/trees.txt')
+
+PATH_DIRWORK = Path(str(Path.home())+'/my-tasks/')
 
 def main():
 
