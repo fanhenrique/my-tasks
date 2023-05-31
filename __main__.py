@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path 
 
+import colored
 from tree.tree import Tree
 
 CURRENT_DIR = Path(__file__).parent.absolute()
@@ -34,17 +35,16 @@ def main():
     if not Path(PATH_DIRWORK).is_dir():
       Path(PATH_DIRWORK).mkdir(parents=True, exist_ok=True)
     
-    path_tree = Path(PATH_DIRWORK+args.file)
+    path_tree = Path(str(PATH_DIRWORK)+'/'+args.file)
 
     with open(CURRENT_TREE, 'w') as current_tree:
       
       if not path_tree.is_file():
         open(path_tree, 'w').close()        
-        print('NEW TREE CREATE in', path_tree) # TODO create new mesage in colored 
+        print(colored.new_tree_create(path_tree))
 
       current_tree.write(path_tree.__str__())
-    
-  
+
   else:
     with open(CURRENT_TREE, 'r') as file:
       path_tree = file.readline()

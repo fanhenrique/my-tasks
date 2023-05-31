@@ -243,3 +243,6 @@ def tree_empty():
 
 def first_node_must_be_board():
   return error() + text('The first node must be a board')
+
+def new_tree_create(path_new_tree):
+  return success() + text(f'NEW TREE CREATE in {str(path_new_tree)}')
