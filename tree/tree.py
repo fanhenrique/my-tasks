@@ -9,7 +9,8 @@ from tree.task import Task
 from tree.note import Note
 
 import utils 
-import read_write as rw
+import read
+import write
 
 class Tree():
 
@@ -304,12 +305,12 @@ class Tree():
     if not file:
       file = self.file
     
-    rw.write_file(file_name=file, node=self.root)
+    write.write_file(file_name=file, node=self.root)
 
 
   def _load(self):
     
-    nodes = rw.read_file(file_name=self.file)
+    nodes = read.read_file(file_name=self.file)
     
     if not nodes:
       return None

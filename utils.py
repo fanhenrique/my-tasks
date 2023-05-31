@@ -4,6 +4,8 @@ from tree.note import Note
 from tree.task import Task
 from tree.board import Board
 
+HEADER_CSV = ('node', 'id', 'date', 'star', 'text', 'children', 'check', 'started', 'priority')
+
 count = 1
 
 def count_date(date):
