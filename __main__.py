@@ -50,59 +50,57 @@ def main():
       path_tree = file.readline()
     
     tree=Tree(path_tree)  
-  
-  #remove later
-  print(args._get_kwargs())    
+
     
   if args.timeline:
     tree.timeline()
     
-  # nova tarefa com ou sem nivel de prioridade
+  # new task with or withuot priority level
   if args.task:
     if args.priority:
       tree.add(text=' '.join(args.task), type='task', input=args.input, priority=args.priority)
     else:
       tree.add(text=' '.join(args.task), type='task', input=args.input)
   
-  # nova nota
+  # new task
   if args.note:    
     tree.add(text=' '.join(args.note), type='note', input=args.input)
   
-  #nova subtarefa
+  # new borad(subtask)
   if args.board:    
     tree.add(text=' '.join(args.board), type='board', input=args.input)
 
-  #deleta todos os nodos
+  # delete list of nodes
   if args.delete:
     tree.delete(ids=args.delete)
 
     
-  # #change text the node
+  # change text the node
   if args.edit:
     tree.change_text(input=args.input, text=' '.join(args.edit))
 
 
-  # #altera a prioridade de uma tarefa
+  # change priority level of a task
   if args.priority is not None and args.input is not None and args.task is None:
     tree.change_priority(input=args.input, priority=args.priority)
 
 
-  # #marca tarefa como concluída
+  # mark task as completed
   if args.check:
     tree.change_check(ids=args.check)
 
 
-  # #marca tarefa como iniciada
+  # mark task as started
   if args.started:
     tree.change_started(ids=args.started)
 
 
-  # #marca tarefa com uma estrela
+  # mark task a starred
   if args.star:
     tree.change_star(ids=args.star)
 
 
-  #printa nodos da árvore ou toda ela
+  # print some tree node or all tree
   if (
     args.input
     and args.file is None
@@ -118,10 +116,9 @@ def main():
     and args.edit is None
   ):
     x = tree.search(args.input)
-
     if x:
       tree.print_tree(x)
-  # elif not args.id and not args.task and not args.note and not args.board and not args.delete:
+
   else:
     if (
       args.input is None
