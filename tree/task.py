@@ -2,22 +2,21 @@ import datetime as dt
 
 import colored as colored
 
+from .node import Node
+
 allowed_priorities = [0,1,2]
 
-class Task():
+class Task(Node):
   
   def __init__(self, id:int, text:str, check:bool=False, started:bool=False, star:bool=False, priority:int=0, date:float=None):
-    self.id = id
-    self.text = text
+    super().__init__(id, text, star, date)
     self.check = check
     self.started = started
-    self.star = star
     if priority not in allowed_priorities:
       raise IndexError
     self.priority = priority 
-    self.date = date if date else dt.datetime.now().timestamp()
+    
   
-
   def __str__(self, level:int=0, show_date:bool=False):
     return (
       colored.indentation(id=self.id, level=level) + 
@@ -27,10 +26,6 @@ class Task():
     )
   
 
-  def change_text(self, text:str):
-    self.text = text
-
-
   def change_check(self):
     self.check = not self.check
     return self.check
@@ -39,11 +34,6 @@ class Task():
   def change_started(self):
     self.started = not self.started
     return self.started
-
-
-  def change_star(self):
-    self.star = not self.star
-    return self.star
 
 
   def change_priority(self, priority:int):
