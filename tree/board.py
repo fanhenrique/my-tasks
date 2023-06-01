@@ -13,12 +13,10 @@ class Board(Node):
     
 
   def __str__(self, level:int=0, info:tuple=None, show_date:bool=False):
-    return (      
-      colored.indentation(id=self.id, level=level) + 
-      colored.board(self.text) +
-      (colored.info(info[0], info[1]) if info else '') +
-      (colored.date(self.date) if show_date else '') +
-      (colored.star() if self.star else '')
+    return super().__str__(      
+      core=colored.board(self.text) + (colored.info(info[0], info[1]) if info else ''),
+      level=level,
+      show_date=show_date
     )
 
 
