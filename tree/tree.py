@@ -381,7 +381,7 @@ class Tree():
 
     for key, board in date_board.items():
       
-      print(colored.date_board(board.text, board.count_checked_tasks(), board.count_tasks()))
+      print(colored.date_timeline(board.text, board.count_checked_tasks(), board.count_tasks()))
       
       for node in board.children:
         print(node.__str__(level=1, show_date=True))

@@ -242,20 +242,25 @@ def only_tasks_can_be_checked(node:Union[Note, Board]):
   return error_only_tasks(node) + text('Only tasks can be checked')
 
 
-def date_board(date:dt.datetime, n1:int, n2:int):
+# only used in timeline mode
+def date_timeline(date:dt.datetime, n1:int, n2:int):
   return (
     text(f'{utils.WEEK[date.weekday()]} {utils.MONTHS[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline']) +  
     info(n1, n2)
   )
 
+
 def invalid_id(invalid_id:int):
   return error() + text('id ') + id(invalid_id) + text(' not valid')
+
 
 def tree_empty():
   return error() + text('Tree is empty')
 
+
 def first_node_must_be_board():
   return error() + text('The first node must be a board')
+
 
 def new_tree_create(path_new_tree:pathlib.PosixPath):
   return success() + text(f'NEW TREE CREATE in {str(path_new_tree)}')
