@@ -1,6 +1,7 @@
-import termcolor as tc
+import pathlib
 import datetime as dt
 from typing import Union
+import termcolor as tc
 
 import utils
 from tree.board import Board
@@ -256,5 +257,5 @@ def tree_empty():
 def first_node_must_be_board():
   return error() + text('The first node must be a board')
 
-def new_tree_create(path_new_tree):
+def new_tree_create(path_new_tree:pathlib.PosixPath):
   return success() + text(f'NEW TREE CREATE in {str(path_new_tree)}')
