@@ -3,7 +3,8 @@
 This project is basead on [Taskbook](https://github.com/klaudiosinani/taskbook.git). Using the Taskbook the need arose to create sub-tasks, so I remodeled the project to use a tree structure, thus allowing to group tasks.
 
 ### Description
-MyTasks allows you to simply and efficiently manage your tasks and notes from your terminal. You can also organize your tasks into subtasks (boards). All this using a simple and minimal syntax.
+MyTasks allows you to simply and efficiently manage your tasks and notes from your terminal.
+You can also organize your tasks into subtasks (boards). All this using a simple and minimal syntax.
 
 ### Structure
 MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and the branches are the boards.
@@ -21,6 +22,8 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 
 ## Usage
 
+With Mytasks it is possible to create more than one tree, thus being able to separate the tasks.
+For example, it is possible to have a tree for tasks at work and another for a personal project of yours.
 
 ### Tree View
 
