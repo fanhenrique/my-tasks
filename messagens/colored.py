@@ -4,6 +4,7 @@ from typing import Union
 import termcolor as tc
 
 import utils
+import messagens.messagens as msg
 from tree.board import Board
 from tree.node import Node
 from tree.note import Note
@@ -137,11 +138,11 @@ def all_tree_info(
 
 
 def error():
-  return tc.colored(text='ERROR ', color='light_red', attrs=['bold'])
+  return tc.colored(text=msg.ERROR, color='light_red', attrs=['bold'])
 
 
 def success():
-  return tc.colored(text='SUCCESS ', color='green', attrs=['bold'])
+  return tc.colored(text=msg.SUCCESS, color='green', attrs=['bold'])
 
 
 def id(text:str, color:str='white', attrs:list[str]=['bold']):
@@ -222,24 +223,21 @@ def success_change_text(node:Node):
 
 
 def priority_level_out_of_range():
-  return(
-    error() +
-    text('Priority level out of range')
-  )
-
+  return f'{error()} {text(msg.PRIORITY_LEVEL_OUT_OF_RANGE)}'
+    
 
 # error only tasks
 def error_only_tasks(node):
   return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe()
 
 def only_tasks_have_priority(node:Union[Note, Board]):
-  return error_only_tasks(node) + text('Only tasks have priority')
+  return error_only_tasks(node) + text(msg.ONLY_TASKS_HAVE_PRIORITY)
 
 def only_tasks_can_be_started(node:Union[Note, Board]):
-  return error_only_tasks(node)  + text('Only tasks can be started')
+  return error_only_tasks(node)  + text(msg.ONLY_TASKS_CAN_BE_STARTED)
 
 def only_tasks_can_be_checked(node:Union[Note, Board]):
-  return error_only_tasks(node) + text('Only tasks can be checked')
+  return error_only_tasks(node) + text(msg.ONLY_TASKS_CAN_BE_CHECKED)
 
 
 # only used in timeline mode
@@ -249,18 +247,16 @@ def date_timeline(date:dt.datetime, n1:int, n2:int):
     info(n1, n2)
   )
 
-
 def invalid_id(invalid_id:int):
   return error() + text('id ') + id(invalid_id) + text(' not valid')
 
-
+# messagens about the tree 
 def tree_empty():
-  return error() + text('Tree is empty')
-
-
-def first_node_must_be_a_board():
-  return error() + text('The first node must be a board')
-
+  return f'{error()} {text(msg.TREE_EMPTY)}'
 
 def new_tree_create(path_new_tree:pathlib.PosixPath):
-  return success() + text(f'NEW TREE CREATE in {str(path_new_tree)}')
+  message = f'{msg.NEW_TREE_CREATE_IN} {str(path_new_tree)}'
+  return f'{success()} {text(message)}'
+
+def first_node_must_be_a_board():
+  return f'{error()} {text(msg.THE_FIRST_NODE_MUST_BE_A_BOARD)}'
