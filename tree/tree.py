@@ -37,7 +37,7 @@ class Tree():
           self._save()
           return
         else:
-          print(colored.first_node_must_be_board())
+          print(colored.first_node_must_be_a_board())
           return
 
       # add new node in children of father
