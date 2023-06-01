@@ -5,9 +5,6 @@ import utils
 from tree.note import Note
 from tree.task import Task
 
-week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
 priority_color = {0:'white', 1:'light_yellow', 2:'light_red'}
 priority_attrs = {0:['bold'], 1:['bold'], 2:['bold', 'underline']}
 
