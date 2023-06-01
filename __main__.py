@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path 
 
-import messagens.colored as colored
+import messages.colored as colored
 from tree.tree import Tree
 
 CURRENT_DIR = Path(__file__).parent.absolute()

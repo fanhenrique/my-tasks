@@ -1,6 +1,6 @@
 from collections import deque
 
-import messagens.colored as colored
+import messages.colored as colored
 from .task import Task
 from .note import Note
 from .node import Node

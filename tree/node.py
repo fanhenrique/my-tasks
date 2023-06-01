@@ -1,6 +1,6 @@
 import datetime as dt
 
-import messagens.colored as colored
+import messages.colored as colored
 
 class Node():
 

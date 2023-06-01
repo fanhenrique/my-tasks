@@ -1,4 +1,4 @@
-import messagens.colored as colored
+import messages.colored as colored
 from .node import Node
 
 allowed_priorities = [0,1,2]

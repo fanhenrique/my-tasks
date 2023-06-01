@@ -1,4 +1,4 @@
-import messagens.colored as colored
+import messages.colored as colored
 from .node import Node
 
 class Note(Node):

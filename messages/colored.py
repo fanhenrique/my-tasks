@@ -4,7 +4,7 @@ from typing import Union
 import termcolor as tc
 
 import utils
-import messagens.messagens as msg
+import messages.messages as msg
 from tree.board import Board
 from tree.node import Node
 from tree.note import Note
