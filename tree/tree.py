@@ -14,14 +14,14 @@ class Tree():
     self.file = file
     self.root = self._load()
         
-
+  # add new node
   def add(self, type, input, text, priority=0):
       
-    #search_node father
+    # search_node father
     father = self.search(input) if input else self.root
     
     try:
-      #create node
+      # create node
       if type == 'note': 
         new = Note(id=self._id_available(), text=text)
       elif type == 'task':
@@ -29,7 +29,7 @@ class Tree():
       elif type == 'board': 
         new = Board(id=self._id_available(), text=text)
     
-      #forces the first node to be a board
+      # forces the first node to be a board
       if not self.root and not father:
         if isinstance(new, Board):
           self.root = new
@@ -52,6 +52,7 @@ class Tree():
       print(colored.priority_level_out_of_range())
     
 
+  # change proiority level of task
   def change_priority(self, input, priority):
 
     try:
@@ -66,8 +67,9 @@ class Tree():
         
     except IndexError:
       print(colored.priority_level_out_of_range())
-      
 
+
+  # change the started state of task
   def change_started(self, ids):
     
     for id in ids:
@@ -81,8 +83,9 @@ class Tree():
         self.save()
       elif node:
         print(colored.only_tasks_can_be_started(node))
-  
 
+
+  # change the checked state of task
   def change_check(self, ids):
     
     for id in ids:
@@ -98,6 +101,7 @@ class Tree():
         print(colored.only_tasks_can_be_checked(node))
 
 
+  # change the star status of the task
   def change_star(self, ids):
     for id in ids:
       node = self.search(id) #use the search function why star can on all nodes(Boards, Tasks, Notes)
@@ -110,6 +114,7 @@ class Tree():
         self.save()
 
 
+  # change text of task
   def change_text(self, input, text):
     
     node = self.search(input) #use the search function why change text can on all nodes(Boards, Tasks, Notes)
