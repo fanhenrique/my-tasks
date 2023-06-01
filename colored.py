@@ -1,7 +1,9 @@
 import termcolor as tc
 import datetime as dt
+from typing import Union
 
 import utils
+from tree.node import Node
 from tree.note import Note
 from tree.task import Task
 
@@ -15,7 +17,7 @@ started_icon = '\u25A3'
 task_icon = '\u25A1'
 note_icon = '\u25C9'
 
-def pipe(color='dark_grey', attrs=['dark', 'bold']):
+def pipe(color:str='dark_grey', attrs:list[str]=['dark', 'bold']):
   return tc.colored(
     text=f'{pipe_icon} ',
     color=color,
@@ -23,7 +25,7 @@ def pipe(color='dark_grey', attrs=['dark', 'bold']):
   )
 
 
-def text(text, color='light_grey', attrs=['dark', 'bold']):
+def text(text:str, color:str='light_grey', attrs:list[str]=['dark', 'bold']):
   return tc.colored(
     text=text,
     color=color,
@@ -31,7 +33,7 @@ def text(text, color='light_grey', attrs=['dark', 'bold']):
   )
 
 
-def indentation(id, level):
+def indentation(id:int, level:int):
   line = ''
   if level > 1:
     line += f'{pipe_icon}   '*(level-1)
@@ -43,7 +45,7 @@ def indentation(id, level):
   return tc.colored(text=f'{line}{id}.', color='dark_grey', attrs=['bold'])
 
 
-def info(n1, n2):
+def info(n1:int, n2:int):
   return tc.colored(
     text=f' [{n1}/{n2}]',
     color='dark_grey',
@@ -51,7 +53,7 @@ def info(n1, n2):
   )
 
 
-def date(date):
+def date(date:float):
   return tc.colored(
     text=f' {utils.count_date(date)}',
     color='dark_grey',
@@ -66,7 +68,7 @@ def star():
     )
 
 
-def board(text):
+def board(text:str):
   return (
     tc.colored(
       text='@',
@@ -81,7 +83,7 @@ def board(text):
   )
 
 
-def task(text, check=False, started=False, priority=0):
+def task(text:str, check:bool=False, started:bool=False, priority:int=0):
   return (
     tc.colored(
       text=f'{check_icon} ' if check else f'{started_icon} ' if started else f'{task_icon} ',# '\u22EF ' '\u22C5'*2 '\u0387'*2 '\u2812 ',
@@ -95,7 +97,7 @@ def task(text, check=False, started=False, priority=0):
   )
 
 
-def note(text):
+def note(text:str):
   return (
     tc.colored(
       text=f'{note_icon} ',
@@ -108,8 +110,16 @@ def note(text):
   )
 
 
-def all_tree_info(complete, done, pending, started, not_started_priority0, not_started_priority1, not_started_priority2, notes):
-
+def all_tree_info(
+    complete:float,
+    done:int,
+    pending:int,
+    started:int,
+    not_started_priority0:int,
+    not_started_priority1:int,
+    not_started_priority2:int,
+    notes:int
+  ):
   return (
     tc.colored(text=f'\n{complete:.2f}% ', color='white', attrs=['bold']) +
     text(text=f'of all tasks complete.\n') + 
@@ -132,15 +142,15 @@ def success():
   return tc.colored(text='SUCCESS ', color='green', attrs=['bold'])
 
 
-def id(text, color='white', attrs=['bold']):
+def id(text:str, color:str='white', attrs:list[str]=['bold']):
   return tc.colored(text=text, color=color, attrs=attrs)
 
 
-def confirmation_add(new=None):
+def confirmation_add(new:Node=None):
   if new:
     return success() + text(utils.string_type_node(new, first_upcase=True)) + ' ' + id(new.id) + text(' created')
   
-def cannot_add_new_node(father=None):
+def cannot_add_new_node(father:Union[Task, Note]=None):
   if father:
     if isinstance(father, Task):
       error_node = text(text='Cannot add a new node in a task')
@@ -150,7 +160,7 @@ def cannot_add_new_node(father=None):
   return error() + error_node
 
 
-def id_not_found(id_not_found):
+def id_not_found(id_not_found:int):
   return(
     error() + 
     text('Node id ') + 
@@ -158,7 +168,7 @@ def id_not_found(id_not_found):
     text(' not found')
   )
 
-def board_not_found_per_name(name):
+def board_not_found_per_name(name:str):
    return(
     error() +
     text('Node with ') + 
@@ -166,7 +176,7 @@ def board_not_found_per_name(name):
     text(' name not found')
    ) 
 
-def success_deleted(deleted):
+def success_deleted(deleted:Node):
   return(
     success() + 
     text(utils.string_type_node(deleted, first_upcase=True)) + ' ' +
@@ -175,36 +185,37 @@ def success_deleted(deleted):
   )
 
 
-def success_changed(node):
+def success_changed(node:Node):
   return(
     success() +
     text(utils.string_type_node(node, first_upcase=True)) + ' ' +
     id(node.id)
   )
 
-
-def success_changed_priority(node):
+# changes in tasks 
+def success_changed_priority(node:Task):
   return success_changed(node) + text(' changed priority')
 
-def success_changed_started(node):
+def success_changed_started(node:Task):
   return success_changed(node) + text(' started')
 
-def success_changed_not_started(node):
+def success_changed_not_started(node:Task):
   return success_changed(node) + text(' not started')
 
-def success_changed_check(node):
+def success_changed_check(node:Task):
   return success_changed(node) + text(' check')
 
-def success_changed_not_check(node):
+def success_changed_not_check(node:Task):
   return success_changed(node) + text(' not check')
 
-def success_changed_star(node):
+# change in nodes
+def success_changed_star(node:Node):
   return success_changed(node) + text(' star')
 
-def success_changed_not_star(node):
+def success_changed_not_star(node:Node):
   return success_changed(node) + text(' not star')
 
-def success_change_text(node):
+def success_change_text(node:Node):
   return success_changed(node) +  text(' edited')
 
 
@@ -233,8 +244,8 @@ def date_board(date:dt.datetime, n1:int, n2:int):
     info(n1, n2)
   )
 
-def invalid_id(invalid):
-  return error() + text('id ') + id(invalid) + text(' not valid')
+def invalid_id(invalid_id:int):
+  return error() + text('id ') + id(invalid_id) + text(' not valid')
 
 def tree_empty():
   return error() + text('Tree is empty')
