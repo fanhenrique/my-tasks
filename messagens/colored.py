@@ -188,67 +188,68 @@ def success_deleted(deleted:Node):
   )
 
 
-def success_changed(node:Node):
-  return(
-    success() +
-    text(utils.string_type_node(node, first_upcase=True)) + ' ' +
-    id(node.id)
-  )
+def priority_level_out_of_range():
+  return f'{error()} {text(msg.PRIORITY_LEVEL_OUT_OF_RANGE)}'
 
-# changes in tasks 
+
+def success_changed(node:Node):
+  return f'{success()} {text(utils.string_type_node(node, first_upcase=True))} {id(node.id)}'
+
+
+# changes in tasks
 def success_changed_priority(node:Task):
-  return success_changed(node) + text(' changed priority')
+  return f'{success_changed(node)} {text(msg.CHANGED_PRIORITY)}'
 
 def success_changed_started(node:Task):
-  return success_changed(node) + text(' started')
+  return f'{success_changed(node)} {text(msg.STARTED)}'
 
 def success_changed_not_started(node:Task):
-  return success_changed(node) + text(' not started')
+  return f'{success_changed(node)} {text(msg.NOT_STARTED)}'
 
 def success_changed_check(node:Task):
-  return success_changed(node) + text(' check')
+  return f'{success_changed(node)} {text(msg.CHECK)}'
 
 def success_changed_not_check(node:Task):
-  return success_changed(node) + text(' not check')
+  return f'{success_changed(node)} {text(msg.NOT_CHECK)}'
+
 
 # change in nodes
 def success_changed_star(node:Node):
-  return success_changed(node) + text(' star')
+  return f'{success_changed(node)} {text(msg.STAR)}'
 
 def success_changed_not_star(node:Node):
-  return success_changed(node) + text(' not star')
+  return f'{success_changed(node)} {text(msg.NOT_STAR)}'
 
 def success_change_text(node:Node):
-  return success_changed(node) +  text(' edited')
-
-
-def priority_level_out_of_range():
-  return f'{error()} {text(msg.PRIORITY_LEVEL_OUT_OF_RANGE)}'
+  return f'{success_changed(node)} {text(msg.EDITED)}'
     
 
 # error only tasks
 def error_only_tasks(node):
-  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe()
+  message = text(f'{utils.string_type_node(node, first_upcase=True)} {id(node.id)}  {pipe()}')
+  return f'{error()} {message}' 
 
 def only_tasks_have_priority(node:Union[Note, Board]):
-  return error_only_tasks(node) + text(msg.ONLY_TASKS_HAVE_PRIORITY)
+  return f'{error_only_tasks(node)} {text(msg.ONLY_TASKS_HAVE_PRIORITY)}'
 
 def only_tasks_can_be_started(node:Union[Note, Board]):
-  return error_only_tasks(node)  + text(msg.ONLY_TASKS_CAN_BE_STARTED)
+  return f'{error_only_tasks(node)} {text(msg.ONLY_TASKS_CAN_BE_STARTED)}'
 
 def only_tasks_can_be_checked(node:Union[Note, Board]):
-  return error_only_tasks(node) + text(msg.ONLY_TASKS_CAN_BE_CHECKED)
+  return f'{error_only_tasks(node)} {text(msg.ONLY_TASKS_CAN_BE_CHECKED)}'
 
 
 # only used in timeline mode
 def date_timeline(date:dt.datetime, n1:int, n2:int):
-  return (
-    text(f'{utils.WEEK[date.weekday()]} {utils.MONTHS[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline']) +  
-    info(n1, n2)
-  )
+  message = text(
+    f'{utils.WEEK[date.weekday()]} {utils.MONTHS[date.month]} {date.day} {date.year}',
+    color='green',
+    attrs=['bold', 'underline'])
+  return f'{message} {info(n1, n2)}'
+  
 
 def invalid_id(invalid_id:int):
-  return error() + text('id ') + id(invalid_id) + text(' not valid')
+  return f'{error()} {text(msg.ID)} {id(invalid_id)} {text(msg.NOT_VALID)}'
 
 # messagens about the tree 
 def tree_empty():
