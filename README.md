@@ -25,6 +25,15 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 With Mytasks it is possible to create more than one tree, thus being able to separate the tasks.
 For example, it is possible to have a tree for tasks at work and another for a personal project of yours.
 
+Use `--file`/`-f` option with your file of tree following right after.
+All trees are stored in the home directory, `~/my-tasks`.
+To create a new tree just use a never used file name
+
+  ```
+  python main.py --file tree.txt
+  ```
+
+
 ### Tree View
 
 ### Timeline View
