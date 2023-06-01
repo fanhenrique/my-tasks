@@ -3,6 +3,7 @@ import datetime as dt
 from typing import Union
 
 import utils
+from tree.board import Board
 from tree.node import Node
 from tree.note import Note
 from tree.task import Task
@@ -226,16 +227,18 @@ def priority_level_out_of_range():
   )
 
 
-def only_tasks_have_priority(node):
-  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks have priority')
+# error only tasks
+def error_only_tasks(node):
+  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe()
 
+def only_tasks_have_priority(node:Union[Note, Board]):
+  return error_only_tasks(node) + text('Only tasks have priority')
 
-def only_tasks_can_be_started(node):
-  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be started')
+def only_tasks_can_be_started(node:Union[Note, Board]):
+  return error_only_tasks(node)  + text('Only tasks can be started')
 
-
-def only_tasks_can_be_checked(node):
-  return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')
+def only_tasks_can_be_checked(node:Union[Note, Board]):
+  return error_only_tasks(node) + text('Only tasks can be checked')
 
 
 def date_board(date:dt.datetime, n1:int, n2:int):
