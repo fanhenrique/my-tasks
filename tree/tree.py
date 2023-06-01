@@ -34,7 +34,7 @@ class Tree():
         if isinstance(new, Board):
           self.root = new
           print(colored.confirmation_add(new=new))
-          self.save()
+          self._save()
           return
         else:
           print(colored.first_node_must_be_board())
@@ -44,7 +44,7 @@ class Tree():
       if isinstance(father, Board):
         father.children.append(new)
         print(colored.confirmation_add(new=new))
-        self.save()
+        self._save()
       else:
         print(colored.cannot_add_new_node(father=father))
 
@@ -61,7 +61,7 @@ class Tree():
       if isinstance(node, Task):
         node.change_priority(priority)
         print(colored.success_changed_priority(node))
-        self.save()
+        self._save()
       elif node:
         print(colored.only_tasks_have_priority(node))
         
@@ -80,7 +80,7 @@ class Tree():
           print(colored.success_changed_started(node))
         else:
           print(colored.success_changed_not_started(node))
-        self.save()
+        self._save()
       elif node:
         print(colored.only_tasks_can_be_started(node))
 
@@ -96,7 +96,7 @@ class Tree():
           print(colored.success_changed_check(node))
         else:
           print(colored.success_changed_not_check(node))
-        self.save()
+        self._save()
       elif node:
         print(colored.only_tasks_can_be_checked(node))
 
@@ -111,7 +111,7 @@ class Tree():
           print(colored.success_changed_star(node))
         else:
           print(colored.success_changed_not_star(node))
-        self.save()
+        self._save()
 
 
   # change text of task
@@ -122,7 +122,7 @@ class Tree():
     if node:
       node.change_text(text)
       print(colored.success_change_text(node))
-      self.save()
+      self._save()
 
 
   def _depth_first_delete_recursive(self, current, visited, nodes_to_delete):
@@ -160,7 +160,7 @@ class Tree():
       print(colored.success_deleted(self.root))
       self.root = None
 
-    self.save()
+    self._save()
 
 
   def _depth_first_search_recursive(self, current, id, visited):
@@ -302,7 +302,7 @@ class Tree():
       ))
 
 
-  def save(self, file=None):
+  def _save(self, file=None):
     if not file:
       file = self.file
     
