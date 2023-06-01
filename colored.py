@@ -1,4 +1,5 @@
 import termcolor as tc
+import datetime as dt
 
 import utils
 from tree.note import Note
@@ -229,9 +230,9 @@ def only_tasks_can_be_checked(node):
   return error() + text(utils.string_type_node(node, first_upcase=True)) + ' ' + id(node.id) + ' ' + pipe() + text('Only tasks can be checked')
 
 
-def date_board(date, n1, n2):
+def date_board(date:dt.datetime, n1:int, n2:int):
   return (
-    text(f'{week[date.weekday()]} {months[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline']) +  
+    text(f'{utils.WEEK[date.weekday()]} {utils.MONTHS[date.month]} {date.day} {date.year}', color='green', attrs=['bold', 'underline']) +  
     info(n1, n2)
   )
 
