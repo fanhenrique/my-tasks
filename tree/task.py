@@ -1,4 +1,4 @@
-import messages.colored as colored
+import messages.messages as msg
 from .node import Node
 
 allowed_priorities = [0,1,2]
@@ -16,7 +16,7 @@ class Task(Node):
   
   def __str__(self, level:int=0, show_date:bool=False):
     return super().__str__(
-      core=colored.task(text=self.text, check=self.check, started=self.started, priority=self.priority),
+      core=msg.task(text=self.text, check=self.check, started=self.started, priority=self.priority),
       level=level,
       show_date=show_date
     )

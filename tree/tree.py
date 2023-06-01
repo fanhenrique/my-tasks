@@ -3,7 +3,7 @@ import datetime as dt
 import utils 
 import read
 import write
-import messages.colored as colored
+import messages.messages as msg
 from tree.board import Board
 from tree.task import Task
 from tree.note import Note
@@ -33,23 +33,23 @@ class Tree():
       if not self.root and not father:
         if isinstance(new, Board):
           self.root = new
-          print(colored.confirmation_add(new=new))
+          print(msg.confirmation_add(new=new))
           self._save()
           return
         else:
-          print(colored.first_node_must_be_a_board())
+          print(msg.first_node_must_be_a_board())
           return
 
       # add new node in children of father
       if isinstance(father, Board):
         father.children.append(new)
-        print(colored.confirmation_add(new=new))
+        print(msg.confirmation_add(new=new))
         self._save()
       else:
-        print(colored.cannot_add_new_node(father=father))
+        print(msg.cannot_add_new_node(father=father))
 
     except IndexError:
-      print(colored.priority_level_out_of_range())
+      print(msg.priority_level_out_of_range())
     
 
   # change proiority level of task
@@ -60,13 +60,13 @@ class Tree():
 
       if isinstance(node, Task):
         node.change_priority(priority)
-        print(colored.success_changed_priority(node))
+        print(msg.success_changed_priority(node))
         self._save()
       elif node:
-        print(colored.only_tasks_have_priority(node))
+        print(msg.only_tasks_have_priority(node))
         
     except IndexError:
-      print(colored.priority_level_out_of_range())
+      print(msg.priority_level_out_of_range())
 
 
   # change the started state of task
@@ -77,12 +77,12 @@ class Tree():
       
       if isinstance(node, Task):
         if node.change_started():
-          print(colored.success_changed_started(node))
+          print(msg.success_changed_started(node))
         else:
-          print(colored.success_changed_not_started(node))
+          print(msg.success_changed_not_started(node))
         self._save()
       elif node:
-        print(colored.only_tasks_can_be_started(node))
+        print(msg.only_tasks_can_be_started(node))
 
 
   # change the checked state of task
@@ -93,12 +93,12 @@ class Tree():
       
       if isinstance(node, Task):
         if node.change_check():
-          print(colored.success_changed_check(node))
+          print(msg.success_changed_check(node))
         else:
-          print(colored.success_changed_not_check(node))
+          print(msg.success_changed_not_check(node))
         self._save()
       elif node:
-        print(colored.only_tasks_can_be_checked(node))
+        print(msg.only_tasks_can_be_checked(node))
 
 
   # change the star status of the task
@@ -108,9 +108,9 @@ class Tree():
 
       if node:
         if node.change_star():
-          print(colored.success_changed_star(node))
+          print(msg.success_changed_star(node))
         else:
-          print(colored.success_changed_not_star(node))
+          print(msg.success_changed_not_star(node))
         self._save()
 
 
@@ -121,7 +121,7 @@ class Tree():
 
     if node:
       node.change_text(text)
-      print(colored.success_change_text(node))
+      print(msg.success_change_text(node))
       self._save()
 
 
@@ -138,7 +138,7 @@ class Tree():
     
       for child in deleted:
         current.children.remove(child)
-        print(colored.success_deleted(child))
+        print(msg.success_deleted(child))
 
     if current in nodes_to_delete:
       return True
@@ -157,7 +157,7 @@ class Tree():
     
     #if root is in nodes to deleted
     if self.root and self.root in nodes_to_delete:
-      print(colored.success_deleted(self.root))
+      print(msg.success_deleted(self.root))
       self.root = None
 
     self._save()
@@ -182,18 +182,18 @@ class Tree():
     
     #return if not exists root 
     if not self.root: 
-      print(colored.tree_empty())
+      print(msg.tree_empty())
       return
     
     try:
       dfs = self._depth_first_search_recursive(self.root, int(id), [])
 
       if not dfs:
-        print(colored.id_not_found(id))
+        print(msg.id_not_found(id))
         return None
 
     except ValueError:                    
-      print(colored.invalid_id(input))
+      print(msg.invalid_id(input))
       return None
 
     return dfs
@@ -229,7 +229,7 @@ class Tree():
     dfsb = self._depth_firt_search_board_recursive(self.root, name, [])
     
     if not dfsb:
-      print(colored.board_not_found_per_name(name))
+      print(msg.board_not_found_per_name(name))
       return None
 
     return dfsb  
@@ -270,7 +270,7 @@ class Tree():
   def print_tree(self, start=None):
     if not start:
       if self.root is None:
-        print(colored.tree_empty())
+        print(msg.tree_empty())
         return
       start = self.root
 
@@ -290,7 +290,7 @@ class Tree():
       
       complete=a[1]*100/(a[0]) if a[0] else 0
       
-      print(colored.all_tree_info(
+      print(msg.all_tree_info(
         complete,
         done=a[1], 
         pending=a[0]-a[1],
@@ -381,7 +381,7 @@ class Tree():
 
     for key, board in date_board.items():
       
-      print(colored.date_timeline(board.text, board.count_checked_tasks(), board.count_tasks()))
+      print(msg.date_timeline(board.text, board.count_checked_tasks(), board.count_tasks()))
       
       for node in board.children:
         print(node.__str__(level=1, show_date=True))

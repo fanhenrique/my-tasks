@@ -1,6 +1,6 @@
 from collections import deque
 
-import messages.colored as colored
+import messages.messages as msg
 from .task import Task
 from .note import Note
 from .node import Node
@@ -14,7 +14,7 @@ class Board(Node):
 
   def __str__(self, level:int=0, info:tuple=None, show_date:bool=False):
     return super().__str__(      
-      core=colored.board(self.text) + (colored.info(info[0], info[1]) if info else ''),
+      core=msg.board(self.text) + (msg.info(info[0], info[1]) if info else ''),
       level=level,
       show_date=show_date
     )

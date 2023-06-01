@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path 
 
-import messages.colored as colored
+import messages.messages as msg
 from tree.tree import Tree
 
 CURRENT_DIR = Path(__file__).parent.absolute()
@@ -41,7 +41,7 @@ def main():
       
       if not path_tree.is_file():
         open(path_tree, 'w').close()        
-        print(colored.new_tree_create(path_tree))
+        print(msg.new_tree_create(path_tree))
 
       current_tree.write(path_tree.__str__())
 

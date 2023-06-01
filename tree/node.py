@@ -1,6 +1,6 @@
 import datetime as dt
 
-import messages.colored as colored
+import messages.messages as msg
 
 class Node():
 
@@ -12,10 +12,10 @@ class Node():
 
   def __str__(self, core:str, level:int=0, show_date:bool=False):
     return (
-      colored.indentation(id=self.id, level=level) + 
+      msg.indentation(id=self.id, level=level) + 
       core + 
-      (colored.date(date=self.date) if show_date else '') +
-      (colored.star() if self.star else '')
+      (msg.date(date=self.date) if show_date else '') +
+      (msg.star() if self.star else '')
     )
 
 
