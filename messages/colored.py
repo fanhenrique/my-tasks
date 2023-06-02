@@ -54,3 +54,6 @@ COMPLETE_ATTRS = ['bold']
 
 PENDING_NUM_COLOR = 'white'
 PENDING_NUM_ATTRS = ['bold']
+
+DATE_TIMELINE_COLOR = 'green'
+DATE_TIMELINE_ATTRS =  ['bold', 'underline']

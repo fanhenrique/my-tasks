@@ -34,15 +34,15 @@ def indentation(id:int, level:int):
 
 
 def info(n1:int, n2:int):
-  return tc.colored(f' [{n1}/{n2}]', color=c.INFO_COLOR, attrs=c.INFO_ATTRS)
+  return tc.colored(f'[{n1}/{n2}]', color=c.INFO_COLOR, attrs=c.INFO_ATTRS)
 
 
 def date(date:float):
-  return tc.colored(text=f' {utils.count_date(date)}', color=c.DATE_COLOR, attrs=c.DATE_ATTRS)
+  return tc.colored(text=f'{utils.count_date(date)}', color=c.DATE_COLOR, attrs=c.DATE_ATTRS)
 
 
 def star():  
-  return tc.colored(f' {txt.STAR_ICON}', color=c.STAR_COLOR)
+  return tc.colored(f'{txt.STAR_ICON}', color=c.STAR_COLOR)
 
 
 def board(text:str):
@@ -201,8 +201,8 @@ def only_tasks_can_be_checked(node:Union[Note, Board]):
 def date_timeline(date:dt.datetime, n1:int, n2:int):
   message = text(
     f'{utils.WEEK[date.weekday()]} {utils.MONTHS[date.month]} {date.day} {date.year}',
-    color='green',
-    attrs=['bold', 'underline'])
+    color=c.DATE_TIMELINE_COLOR,
+    attrs=c.DATE_TIMELINE_ATTRS)
   return f'{message} {info(n1, n2)}'
   
 
