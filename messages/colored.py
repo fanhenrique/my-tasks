@@ -33,9 +33,6 @@ def magenta_bold(text:str):
 def light_red_bold(text:str):
   return tc.colored(text, color='light_red', attrs=['bold'])
 
-def green_bold(text:str):
-  return tc.colored(text, color='green', attrs=['bold'])
-
 def white_bold(text:str):
   return tc.colored(text, color='white', attrs=['bold'])
 
