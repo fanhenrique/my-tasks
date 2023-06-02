@@ -193,7 +193,7 @@ class Tree():
         return None
 
     except ValueError:                    
-      print(msg.invalid_id(input))
+      print(msg.invalid_id(id))
       return None
 
     return dfs

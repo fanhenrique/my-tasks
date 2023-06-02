@@ -205,8 +205,8 @@ def date_timeline(date:dt.datetime, n1:int, n2:int):
   return f'{message} {info(n1, n2)}'
   
 
-def invalid_id(invalid_id:int):
-  return f'{error()} {text(txt.ID)} {id(invalid_id)} {text(txt.NOT_VALID)}'
+def invalid_id(invalid_id:str):
+  return f'{error()} {text(txt.ID)} {id(invalid_id)} {text(txt.INVALID)}'
 
 # messagens about the tree 
 def tree_empty():

@@ -15,7 +15,7 @@ PENDING = 'pending'
 NOTES = 'notes'
 
 ID = 'ID'
-NOT_VALID = 'not valid'
+INVALID = 'invalid'
 NOT_FOUND = 'not found'
 NODE_ID = f'Node {ID}'
 
