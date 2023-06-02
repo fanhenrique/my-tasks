@@ -1,10 +1,10 @@
 import pathlib
 import datetime as dt
 from typing import Union
-import termcolor as tc
 
 import utils
 import messages.texts as txt
+import messages.colored as colored
 from tree.board import Board
 from tree.node import Node
 from tree.note import Note
@@ -13,20 +13,19 @@ from tree.task import Task
 PRIORITY_COLOR = {0:'white', 1:'light_yellow', 2:'light_red'}
 PRIORITY_ATTRS = {0:['bold'], 1:['bold'], 2:['bold', 'underline']}
 
-def pipe(color:str='dark_grey', attrs:list[str]=['dark', 'bold']):
-  return tc.colored(
-    text=f'{txt.PIPE_ICON} ',
-    color=color,
-    attrs=attrs,
-  )
+CHECK_ICON_COLOR = 'light_green'
+STARTED_ICON_COLOR = 'blue'
+
+CHECK_TEXT_COLOR = 'light_grey'
+CHECK_TEXT_ATTRS = ['dark']
 
 
-def text(text:str, color:str='light_grey', attrs:list[str]=['dark', 'bold']):
-  return tc.colored(
-    text=text,
-    color=color,
-    attrs=attrs,
-  )
+def pipe():
+  return colored.dark_grey_dark_bold(text=f'{txt.PIPE_ICON}')
+
+
+def text(text:str):
+  return colored.light_grey_dark_bold(text=text)
 
 
 def indentation(id:int, level:int):
@@ -38,73 +37,43 @@ def indentation(id:int, level:int):
     line += txt.PIPE_ICON
     line += '  ' if id > 9 else '   '
 
-  return tc.colored(text=f'{line}{id}.', color='dark_grey', attrs=['bold'])
+  return colored.dark_grey_bold(text=f'{line}{id}.')
 
 
 def info(n1:int, n2:int):
-  return tc.colored(
-    text=f' [{n1}/{n2}]',
-    color='dark_grey',
-    attrs=['bold', 'dark'],
-  )
+  return colored.dark_grey_dark_bold(text=f' [{n1}/{n2}]')
 
 
 def date(date:float):
-  return tc.colored(
-    text=f' {utils.count_date(date)}',
-    color='dark_grey',
-    attrs=['dark'],
-  )
+  return colored.dark_grey_dark(text=f' {utils.count_date(date)}')
 
 
 def star():  
-  return tc.colored(
-      text=f' {txt.STAR_ICON}',
-      color='light_yellow',
-    )
+  return colored.light_yellow(f' {txt.STAR_ICON}')
 
 
 def board(text:str):
-  return (
-    tc.colored(
-      text='@',
-      color='green',
-      attrs=['bold'],
-    ) + 
-    tc.colored(
-      text=text,
-      color='green',
-      attrs=['bold','underline']
-    )
-  )
+  colored_icon = colored.green_bold(f'{txt.BOARD_ICON}')
+  colored_text = colored.green_bold_underline(text=text)
+  return f'{colored_icon}{colored_text}'
 
 
+#''.join([f'\u0336{c}' for c in text]) if check else text,
 def task(text:str, check:bool=False, started:bool=False, priority:int=0):
-  return (
-    tc.colored(
-      text=f'{txt.CHECK_ICON} ' if check else f'{txt.STARTED_ICON} ' if started else f'{txt.TASK_ICON} ',# '\u22EF ' '\u22C5'*2 '\u0387'*2 '\u2812 ',
-      color='light_green' if check else 'blue' if started else PRIORITY_COLOR[priority],
-    ) +
-    tc.colored(
-      text=text,#''.join([f'\u0336{c}' for c in text]) if check else text,
-      color='light_grey' if check else PRIORITY_COLOR[priority],
-      attrs=['dark'] if check else PRIORITY_ATTRS[priority],
-    )
-  )
+
+  icon = txt.CHECK_ICON if check else txt.STARTED_ICON if started else txt.TASK_ICON
+  icon_color = CHECK_ICON_COLOR if check else STARTED_ICON_COLOR if started else PRIORITY_COLOR[priority]
+  colored_icon = colored.colored(text=icon, color=icon_color)
+
+  text_color = CHECK_TEXT_COLOR if check else PRIORITY_COLOR[priority]
+  text_attrs = CHECK_TEXT_ATTRS if check else PRIORITY_ATTRS[priority]
+  colored_text = colored.colored(text=text, color=text_color, attrs=text_attrs)
+
+  return f'{colored_icon} {colored_text}'
 
 
 def note(text:str):
-  return (
-    tc.colored(
-      text=f'{txt.NOTE_ICON} ',
-      color='magenta',
-    ) + 
-    tc.colored(
-      text=text,
-      color='magenta',
-    )
-  )
-
+  return colored.magenta(text=f'{txt.NOTE_ICON} {text}')
 
 def all_tree_info(
     complete:float,
@@ -116,30 +85,45 @@ def all_tree_info(
     not_started_priority2:int,
     notes:int
   ):
-  return (
-    tc.colored(text=f'\n{complete:.2f}% ', color='white', attrs=['bold']) +
-    text(text=f'of all tasks complete.\n') + 
-    tc.colored(text=f'{txt.CHECK_ICON} {done} ', color='light_green', attrs=['bold']) + text(text=f'done ') + pipe() +
-    tc.colored(text=f'{pending} ', color='white', attrs=['bold']) + text(text='pending ') +
-    tc.colored(text=f'{txt.STARTED_ICON} {started} ', color='blue', attrs=['bold']) + text(text='started ') +
-    tc.colored(text=f'{txt.TASK_ICON} {not_started_priority0} ', color=PRIORITY_COLOR[0], attrs=['bold']) + 
-    tc.colored(text=f'{txt.TASK_ICON} {not_started_priority1} ', color=PRIORITY_COLOR[1], attrs=['bold']) +
-    tc.colored(text=f'{txt.TASK_ICON} {not_started_priority2} ', color=PRIORITY_COLOR[2], attrs=['bold']) +
-    text(text=f'not started ') + pipe() +
-    tc.colored(text=f'{txt.NOTE_ICON} {notes} ',color='magenta', attrs=['bold']) + text(text='notes')
-  )
 
+  txt_complete = colored.white_bold(f'\n{complete:.2f}%')
+  of_all_tasks_complete = text(f'{txt.OF_ALL_TASKS_COMPLETE}')
+  i = f'{txt_complete} {of_all_tasks_complete}'
+
+  check_icon = colored.light_green_bold(f'{txt.CHECK_ICON} {done}')
+  txt_done = text(f'{txt.DONE}')
+  d = f'{check_icon} {txt_done}'
+
+  num_pending = colored.white_bold(f'{pending}')
+  txt_pending = text(f'{txt.PENDING}')
+  p = f'{num_pending} {txt_pending}' 
+
+  started_icon  = colored.blue_bold(f'{txt.STARTED_ICON} {started}')
+  txt_started = text(f'{txt.STARTED}')
+  s = f'{started_icon} {txt_started}'
+
+  priority0_icon = colored.colored(f'{txt.TASK_ICON} {not_started_priority0}', color=PRIORITY_COLOR[0], attrs=PRIORITY_ATTRS[0])
+  priority1_icon = colored.colored(f'{txt.TASK_ICON} {not_started_priority1}', color=PRIORITY_COLOR[1], attrs=PRIORITY_ATTRS[1])
+  priority2_icon = colored.light_red_bold(f'{txt.TASK_ICON} {not_started_priority2}')
+
+  txt_not_started = text(f'{txt.NOT_STARTED}')
+  ns = f'{priority0_icon} {priority1_icon} {priority2_icon} {txt_not_started}'
+  
+  note_icon = colored.magenta_bold(f'{txt.NOTE_ICON} {notes}')
+  txt_notes = text(f'{txt.NOTES}')
+  n = f'{note_icon} {txt_notes}'
+
+  return f'{i} {d} {pipe()} {p} {s} {ns} {pipe()} {n}'
 
 def error():
-  return tc.colored(text=txt.ERROR, color='light_red', attrs=['bold'])
-
+  return colored.light_red_bold(text=txt.ERROR)
 
 def success():
-  return tc.colored(text=txt.SUCCESS, color='green', attrs=['bold'])
+  return colored.green_bold(text=txt.SUCCESS)
 
 
-def id(id:str, color:str='white', attrs:list[str]=['bold']):
-  return tc.colored(text=id, color=color, attrs=attrs)
+def id(id:str):
+  return colored.white_bold(text=id)
 
 
 def confirmation_add(new:Node=None):
