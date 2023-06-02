@@ -59,7 +59,7 @@ def board(text:str):
 
 
 #''.join([f'\u0336{c}' for c in text]) if check else text,
-def task(text:str, check:bool=False, started:bool=False, priority:int=0):
+def task(text:str, check:bool, started:bool, priority:int):
 
   icon = txt.CHECK_ICON if check else txt.STARTED_ICON if started else txt.TASK_ICON
   icon_color = CHECK_ICON_COLOR if check else STARTED_ICON_COLOR if started else PRIORITY_COLOR[priority]
