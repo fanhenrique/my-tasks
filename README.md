@@ -37,7 +37,7 @@ To create a new tree just use a never used file name
 ### Tree View
 
 <div align="center">
-  <img alt="structure" width="50%" src="media/exemple.png"/>
+  <img alt="structure" width="50%" src="media/tree_view.png"/>
 </div>
 
 ### Timeline View
