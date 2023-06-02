@@ -1,10 +1,19 @@
-# icons
+# icons 
+# other icons interesting
+#'\u22EF' '\u22C5'*2 '\u0387'*2 '\u2812'
 PIPE_ICON = '\u2223'
 STAR_ICON = '\u2605'
 CHECK_ICON = '\u2713'
 STARTED_ICON = '\u25A3'
 TASK_ICON = '\u25A1'
 NOTE_ICON = '\u25C9'
+BOARD_ICON = '@'
+
+# all tree info 
+DONE = 'done'
+OF_ALL_TASKS_COMPLETE = 'of all tasks complete.\n'
+PENDING = 'pending'
+NOTES = 'notes'
 
 ID = 'ID'
 SUCCESS = 'SUCCESS'
