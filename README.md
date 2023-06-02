@@ -45,8 +45,8 @@ To create a new tree just use a never used file name
   ```
   python main.py --help
   ```
-
-### Create Board
+### Node Operations
+#### Create node Board
 
   To create a new board use the `--board`/`-b` option with your description following right after.
     
@@ -54,7 +54,7 @@ To create a new tree just use a never used file name
   python main.py --board my-board
   ```
 
-### Create Task
+#### Create node Task
 
   To create a new task use the `--task`/`-t` option with your description following right after.
   
@@ -62,7 +62,7 @@ To create a new tree just use a never used file name
   python main.py --task write document
   ```
 
-### Create Note
+#### Create node Note
 
   To create a new note use the `--note`/`-t` option with your description following right after.
     
@@ -70,7 +70,7 @@ To create a new tree just use a never used file name
   python main.py --note caution with orthography at the document
   ```
 
-### Delete Node
+#### Delete node
 
   To delete some node use the `--delete`/`-d` option followed by the list of ids of the nodes.
   
@@ -78,7 +78,7 @@ To create a new tree just use a never used file name
   python main.py --delete 3 4 7 9
   ```
 
-### Edit Node
+#### Edit node
 
   To edit some node use the `--edit`/`-e` option followed by the list of ids of the nodes. In this case it is necessary to indicate the id of the node
   
@@ -86,15 +86,15 @@ To create a new tree just use a never used file name
   python main.py 3 --edit new name node
   ```
 
-### Starred Node
+#### Starred node
 
   To mark a node as starred, use the `--star`/`-x` option followed by the list of ids of the tasks.
     
   ```
   python main.py --star 2 3 5
   ```
-
-### Checked Task
+### Task perations
+#### Checked Task
 
   To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the list of ids of the tasks.
     
@@ -102,7 +102,7 @@ To create a new tree just use a never used file name
   python main.py --check 2 3 5
   ```
 
-### Started Task
+#### Started Task
 
   To mark a task as started/not started, use the `--started`/`-s` option followed by the list of ids of the tasks.
   
@@ -110,7 +110,7 @@ To create a new tree just use a never used file name
   python main.py --started 2 3 5
   ```
 
-### Change priority level Task
+#### Change priority level Task
 
   To change the priority level of a task, use the `--priority <level>`/`-p <level>` option. In this case it is necessary to indicate the id of the task
 
