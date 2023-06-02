@@ -80,7 +80,7 @@ To create a new tree just use a never used file name
 
 #### Edit node
 
-  To edit some node use the `--edit`/`-e` option followed by the list of ids of the nodes. In this case it is necessary to indicate the id of the node
+  To edit some node use the `--edit`/`-e` option followed by the new name of the node. In this case it is necessary to indicate the id of the node
   
   ```
   python main.py 3 --edit new name node
