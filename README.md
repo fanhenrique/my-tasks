@@ -10,7 +10,7 @@ You can also organize your tasks into subtasks (boards). All this using a simple
 MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and the branches are the boards.
 
 <div align="center">
-  <img alt="structure" width="50%" src="structure.svg"/>
+  <img alt="structure" width="50%" src="media/structure.svg"/>
 </div>
 
 ## Install
@@ -36,6 +36,10 @@ To create a new tree just use a never used file name
 
 ### Tree View
 
+<div align="center">
+  <img alt="structure" width="50%" src="media/exemple.png"/>
+</div>
+
 ### Timeline View
 
 ### Help
@@ -48,11 +52,15 @@ To create a new tree just use a never used file name
 ### Node Operations
 #### Create node Board
 
-  To create a new board use the `--board`/`-b` option with your description following right after.
+  To create a new board use the `--board`/`-b` option with your description following right after. Here is recommended use name without space, 
     
   ```
   python main.py --board my-board
   ```
+  
+  ATENTION: Here it is recommended to use the name without a space, 
+  as it is possible to search for subtasks by name. 
+  And in the terminal it is not pleasant to search for things that have a space in the name.
 
 #### Create node Task
 
