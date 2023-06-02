@@ -14,7 +14,7 @@ class Board(Node):
 
   def __str__(self, level:int=0, info:tuple=None, show_date:bool=False):
     return super().__str__(      
-      core=msg.board(self.text) + (msg.info(info[0], info[1]) if info else ''),
+      core=f'{msg.board(self.text)} {msg.info(info[0], info[1]) if info else ""}',
       level=level,
       show_date=show_date
     )

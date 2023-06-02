@@ -12,10 +12,10 @@ class Node():
 
   def __str__(self, core:str, level:int=0, show_date:bool=False):
     return (
-      msg.indentation(id=self.id, level=level) + 
-      core + 
-      (msg.date(date=self.date) if show_date else '') +
-      (msg.star() if self.star else '')
+      f'{msg.indentation(id=self.id, level=level)}'
+      f'{core} '
+      f'{msg.date(date=self.date) if show_date else ""} '
+      f'{msg.star() if self.star else ""}'
     )
 
 
