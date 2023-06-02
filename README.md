@@ -93,7 +93,7 @@ To create a new tree just use a never used file name
   ```
   python main.py --star 2 3 5
   ```
-### Task perations
+### Task Operations
 #### Checked Task
 
   To mark a task as complete/incomplete, use the `--check`/`-c` option followed by the list of ids of the tasks.
