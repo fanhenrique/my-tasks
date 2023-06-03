@@ -6,9 +6,11 @@ from tree.tree import Tree
 
 CURRENT_DIR = Path(__file__).parent.absolute()
 
-CURRENT_TREE = Path(str(CURRENT_DIR)+'/trees.txt')
-
 PATH_DIRWORK = Path(str(Path.home())+'/my-tasks/')
+
+CONTEXT_DIR = Path(str(PATH_DIRWORK)+'/context')
+
+CONTEXT_TREE = Path(str(CONTEXT_DIR)+'/tree.context')
 
 def main():
 
@@ -29,27 +31,35 @@ def main():
 
   args = parser.parse_args()
 
-  if args.file:
 
-    #check if work dir exists else create work dir 
-    if not Path(PATH_DIRWORK).is_dir():
-      Path(PATH_DIRWORK).mkdir(parents=True, exist_ok=True)
+  #check if work dir exists else create work dir 
+  if not Path(PATH_DIRWORK).is_dir():
+    Path(PATH_DIRWORK).mkdir(parents=True, exist_ok=True)
+    Path(CONTEXT_DIR).mkdir(parents=True, exist_ok=True)
+    open(CONTEXT_TREE,'w').close()
+
+  if args.file:
     
     path_tree = Path(str(PATH_DIRWORK)+'/'+args.file)
 
-    with open(CURRENT_TREE, 'w') as current_tree:
+    with open(CONTEXT_TREE, 'w') as context_tree:
       
       if not path_tree.is_file():
         open(path_tree, 'w').close()        
         print(msg.new_tree_create(path_tree))
 
-      current_tree.write(path_tree.__str__())
+      context_tree.write(path_tree.__str__())
 
   else:
-    with open(CURRENT_TREE, 'r') as file:
-      path_tree = file.readline()
+      with open(CONTEXT_TREE, 'r') as file:
+        path_tree = file.readline()
+      
+      if path_tree:
+        tree=Tree(path_tree)
+      else:
+        print(msg.uninitialized_context())
+        exit()
     
-    tree=Tree(path_tree)  
 
     
   if args.timeline:

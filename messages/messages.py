@@ -218,3 +218,6 @@ def new_tree_create(path_new_tree:pathlib.PosixPath):
 
 def first_node_must_be_a_board():
   return f'{error()} {text(txt.THE_FIRST_NODE_MUST_BE_A_BOARD)}'
+
+def uninitialized_context():
+  return f'{error()} {text(txt.UNINITIALIZED_CONTEXT)}\n{text(txt.USE_COMMAND_FILE_USE_OR_CREATE_A_TREE)}'
