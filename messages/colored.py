@@ -57,3 +57,6 @@ PENDING_NUM_ATTRS = ['bold']
 
 DATE_TIMELINE_COLOR = 'green'
 DATE_TIMELINE_ATTRS =  ['bold', 'underline']
+
+TREE_EMPTY_COLOR = 'yellow'
+TREE_EMPTY_ATRRS = ['bold']

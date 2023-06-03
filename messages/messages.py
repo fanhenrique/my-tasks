@@ -210,7 +210,8 @@ def invalid_id(invalid_id:str):
 
 # messagens about the tree 
 def tree_empty():
-  return f'{error()} {text(txt.TREE_EMPTY)}'
+  tree_empty = tc.colored(txt.TREE_EMPTY, color=c.TREE_EMPTY_COLOR, attrs=c.TREE_EMPTY_ATRRS)
+  return f'{tree_empty}\n{text(txt.THE_FIRST_NODE_MUST_BE_A_BOARD)}'
 
 def new_tree_create(path_new_tree:pathlib.PosixPath):
   message = f'{txt.NEW_TREE_CREATE_IN} {str(path_new_tree)}'
