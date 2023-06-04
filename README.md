@@ -19,7 +19,14 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
   ```
   git clone https://github.com/fanhenrique/my-tasks.git
   ```
-
+  Install dependencies
+  ```
+  pip install -r requirements.txt
+  ```
+  bash script to install.
+  ```
+  ./install.sh
+  ```
 ## Usage
 
 With Mytasks it is possible to create more than one tree, thus being able to separate the tasks.
@@ -27,7 +34,7 @@ For example, it is possible to have a tree for tasks at work and another for a p
 
 Use `--file`/`-f` option with your file of tree following right after.
 All trees are stored in the home directory, `~/my-tasks`.
-To create a new tree just use a never used file name
+To create a new tree just use a never used file name.
 
   ```
   python main.py --file tree.txt
@@ -52,7 +59,7 @@ To create a new tree just use a never used file name
 ### Node Operations
 #### Create node Board
 
-  To create a new board use the `--board`/`-b` option with your description following right after. Here is recommended use name without space, 
+  To create a new board use the `--board`/`-b` option with your description following right after. Here is recommended use name without space.
     
   ```
   python main.py --board my-board
@@ -88,7 +95,7 @@ To create a new tree just use a never used file name
 
 #### Edit node
 
-  To edit some node use the `--edit`/`-e` option followed by the new name node. In this case it is necessary to indicate the id of the node
+  To edit some node use the `--edit`/`-e` option followed by the new name node. In this case it is necessary to indicate the id of the node.
   
   ```
   python main.py 3 --edit new name node
@@ -120,7 +127,7 @@ To create a new tree just use a never used file name
 
 #### Change priority level Task
 
-  To change the priority level of a task, use the `--priority <level>`/`-p <level>` option. In this case it is necessary to indicate the id of the task
+  To change the priority level of a task, use the `--priority <level>`/`-p <level>` option. In this case it is necessary to indicate the id of the task.
 
   - 0 - Default priority 
   - 1 - Low priority 
