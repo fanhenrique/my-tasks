@@ -2,7 +2,11 @@
 
 This project is basead on [Taskbook](https://github.com/klaudiosinani/taskbook.git). Using the Taskbook the need arose to create sub-tasks, so I remodeled the project to use a tree structure, thus allowing to group tasks.
 
-Contributors are welcome
+**Contributors are welcome. Submit your pull requests**
+
+### Environment
+  [![Python 3.9.2](https://img.shields.io/badge/python-3.9.2-blue.svg)](https://www.python.org/downloads/release/python-392/)
+  [![pip 23.1.2](https://img.shields.io/badge/pip-23.1.2-blue.svg)](https://pip.pypa.io/en/stable/)
 
 ### Description
 MyTasks allows you to simply and efficiently manage your tasks and notes from your terminal.
@@ -14,10 +18,6 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
 <div align="center">
   <img alt="structure" width="50%" src="media/structure.svg"/>
 </div>
-
-### Environments
-  [![Python 3.9.2](https://img.shields.io/badge/python-3.9.2-blue.svg)](https://www.python.org/downloads/release/python-392/)
-  [![pip 23.1.2](https://img.shields.io/badge/pip-23.1.2-blue.svg)](https://pip.pypa.io/en/stable/)
 
 ## Install
 
