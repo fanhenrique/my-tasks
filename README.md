@@ -23,7 +23,7 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
   ```
   pip install -r requirements.txt
   ```
-  bash script to install.
+  Use bash script to install.
   ```
   ./install.sh
   ```
