@@ -15,6 +15,10 @@ MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and
   <img alt="structure" width="50%" src="media/structure.svg"/>
 </div>
 
+### Environments
+  [![Python 3.9.2](https://img.shields.io/badge/python-3.9.2-blue.svg)](https://www.python.org/downloads/release/python-392/)
+  [![pip 23.1.2](https://img.shields.io/badge/pip-23.1.2-blue.svg)](https://pip.pypa.io/en/stable/)
+
 ## Install
 
   Clone this repository.
