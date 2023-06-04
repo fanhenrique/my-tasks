@@ -20,6 +20,10 @@ class Tree():
     # search_node father
     father = self.search(input) if input else self.root
     
+    # father not found
+    if not father:
+      return
+    
     try:
       # create node
       if type == 'note': 
