@@ -1,3 +1,6 @@
+WEEK = ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')
+MONTHS = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+
 # icons 
 # other icons interesting '\u22EF' '\u22C5'*2 '\u0387'*2 '\u2812'
 PIPE_ICON = '\u2223'
