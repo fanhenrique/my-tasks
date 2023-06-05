@@ -57,7 +57,7 @@ def main():
   else:
       with open(CONTEXT_TREE, 'r') as file:
         path_tree = file.readline()
-      
+  
       if path_tree:
         tree=Tree(path_tree)
       else:
