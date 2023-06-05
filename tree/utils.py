@@ -1,9 +1,12 @@
 count = 1
 
-def find_missing(x):
+# find the first missing position in the list
+def find_missing(x:list):
   x.sort()
   difference = list(set(range(x[0], x[-1]+1)).difference(x))
   
+  # returns the first of the difference 
+  # else one more than the last position in the received list
   return difference[0] if len(difference) else x[-1]+1
 
 
