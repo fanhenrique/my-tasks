@@ -198,10 +198,11 @@ def only_tasks_can_be_checked(node:Union[Note, Board]):
 
 # only used in timeline mode
 def date_timeline(date:dt.datetime, n1:int, n2:int):
-  message = text(
+  message = tc.colored(
     f'{utils.WEEK[date.weekday()]} {utils.MONTHS[date.month]} {date.day} {date.year}',
     color=c.DATE_TIMELINE_COLOR,
-    attrs=c.DATE_TIMELINE_ATTRS)
+    attrs=c.DATE_TIMELINE_ATTRS
+  )
   return f'{message} {info(n1, n2)}'
   
 
