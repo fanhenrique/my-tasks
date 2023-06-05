@@ -58,7 +58,7 @@ def main():
         tree=Tree(path_tree)
       else:
         print(msg.uninitialized_context())
-        exit()
+        return
     
 
     
