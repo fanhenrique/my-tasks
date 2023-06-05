@@ -22,3 +22,13 @@ def all_args_are_empty(args):
       return False
   return True
     
+def only_one_arg(x:str, args:dict):
+  
+  flag = False
+  for arg in args:
+    if arg == x and args[arg]:
+      flag = True
+    if arg != x and args[arg]:
+      return False
+
+  return flag

@@ -123,21 +123,8 @@ def main():
         tree.print_tree(x)
   
   # if all arguments are empty, print the whole tree 
-    if (
-      args.input is None
-      and args.file is None
-      and not args.timeline 
-      and args.task is None 
-      and args.note is None
-      and args.board is None
-      and args.delete is None
-      and args.check is None
-      and args.started is None
-      and args.star is None
-      and args.priority is None
-      and args.edit is None
-    ):
-      tree.print_tree()
+  if utils.all_args_are_empty(args.__dict__):
+    tree.print_tree()
 
 
 if __name__ == '__main__':
