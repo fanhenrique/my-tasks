@@ -6,9 +6,7 @@ from tree.board import Board
 
 HEADER_CSV = ('node', 'id', 'date', 'star', 'text', 'children', 'check', 'started', 'priority')
 
-WEEK = ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')
 
-MONTHS = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
 
 count = 1
 
