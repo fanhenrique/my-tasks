@@ -3,7 +3,6 @@ import datetime as dt
 from typing import Union
 import termcolor as tc
 
-import utils
 import messages.colored as c
 import messages.texts as txt
 import messages.colored as colored
@@ -121,7 +120,7 @@ def id(id:str):
 
 def confirmation_add(new:Node=None):
   if new:
-    return f'{success()} {text(utils.string_type_node(new, first_upcase=True))} {id(new.id)} {text(txt.CREATED)}'
+    return f'{success()} {text(new.__class__.__name__)} {id(new.id)} {text(txt.CREATED)}'
   
 def cannot_add_new_node(father:Union[Task, Note]=None):
   if father:
@@ -142,7 +141,7 @@ def board_not_found_per_name(name:str):
 
 
 def success_deleted(deleted:Node):
-  message = f'{text(utils.string_type_node(deleted, first_upcase=True))}'
+  message = f'{text(deleted.__class__.__name__)}'
   return f'{success()} {message} {id(deleted.id)} {text(txt.DELETED)}'
 
 
@@ -151,7 +150,7 @@ def priority_level_out_of_range():
 
 
 def success_changed(node:Node):
-  return f'{success()} {text(utils.string_type_node(node, first_upcase=True))} {id(node.id)}'
+  return f'{success()} {text(node.__class__.__name__)} {id(node.id)}'
 
 
 # changes in tasks
@@ -184,7 +183,7 @@ def success_change_text(node:Node):
 
 # error only tasks
 def error_only_tasks(node):
-  message = text(f'{utils.string_type_node(node, first_upcase=True)} {id(node.id)}  {pipe()}')
+  message = text(f'{node.__class__.__name__} {id(node.id)}  {pipe()}')
   return f'{error()} {message}' 
 
 def only_tasks_have_priority(node:Union[Note, Board]):
