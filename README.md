@@ -2,7 +2,7 @@
 
 This project is basead on [Taskbook](https://github.com/klaudiosinani/taskbook.git). Using the Taskbook the need arose to create sub-tasks, so I remodeled the project to use a tree structure, thus allowing to group tasks.
 
-**Contributors are welcome. Submit your pull requests**
+**Contributors are welcome. Submit your pull requests.**
 
 ### Environment
   [![Python 3.9.2](https://img.shields.io/badge/python-3.9.2-blue.svg)](https://www.python.org/downloads/release/python-392/)
@@ -81,8 +81,18 @@ To create a new tree just use a never used file name.
   ```
   mytasks --board my-board
   ```
-  > **_NOTE:_** Here it is recommended to use the name without a space, 
-  as it is possible to search for subtasks by name. And in the terminal it is not pleasant to search for things that have a space in the name.
+  
+> **Note** 
+> It is recommended to use the name without a space, 
+>as it is possible to search for subtasks by name. And in the terminal it is not pleasant to search for things that have a space in the name.
+>See the example below.
+>```
+>mytasks @my-borad
+>```
+>```
+>mytasks "@my board"
+>```
+  
 
 #### Create node Task
 
