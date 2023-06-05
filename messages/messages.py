@@ -7,7 +7,7 @@ import utils
 import messages.colored as c
 import messages.texts as txt
 import messages.colored as colored
-from messages.utils import count_date
+import messages.utils as utils
 from tree.board import Board
 from tree.node import Node
 from tree.note import Note
@@ -39,7 +39,7 @@ def info(n1:int, n2:int):
 
 
 def date(date:float):
-  return tc.colored(text=f'{count_date(date)}', color=c.DATE_COLOR, attrs=c.DATE_ATTRS)
+  return tc.colored(text=f'{utils.count_date(date)}', color=c.DATE_COLOR, attrs=c.DATE_ATTRS)
 
 
 def star():  
