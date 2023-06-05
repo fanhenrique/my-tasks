@@ -9,10 +9,11 @@ This project is basead on [Taskbook](https://github.com/klaudiosinani/taskbook.g
   [![pip 23.1.2](https://img.shields.io/badge/pip-23.1.2-blue.svg)](https://pip.pypa.io/en/stable/)
 
 ### Description
-MyTasks allows you to simply and efficiently manage your tasks and notes from your terminal.
-You can also organize your tasks into subtasks (boards). All this using a simple and minimal syntax.
-With Mytasks it is possible to create more than one tree, thus being able to separate the tasks.
-For example, it is possible to have a tree for tasks at work and another for a personal project of yours.
+MyTasks lets you manage your tasks and notes from your terminal in a simple and efficient way, being able to group your tasks into subtasks (boards).
+All this using a simple and minimalist syntax.
+With Mytasks it is possible to create more than one tree, thus being able to separate the tasks, each tree is a file.
+For example, you might have one tree for your work tasks and another one for some  your personal project.
+
 
 ### Structure
 MyTasks uses a tree structure, where the leaf nodes are the tasks and notes, and the branches are the boards.
@@ -46,6 +47,13 @@ Now in the terminal just use the command `mytasks`.
 </div>
 
 ### Timeline View
+
+The timeline view allows you to see the creation dates of tasks and notes. Use the `--timeline`/`-tl` command.
+
+
+<div align="center">
+  <img alt="structure" width="50%" src="media/tree_view_timeline.png"/>
+</div>
 
 ### Context (switch between trees)
 
