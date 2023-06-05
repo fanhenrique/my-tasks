@@ -1,9 +1,9 @@
 from collections import deque
 
 import messages.messages as msg
-from .task import Task
-from .note import Note
-from .node import Node
+from tree.task import Task
+from tree.note import Note
+from tree.node import Node
 
 class Board(Node):
 

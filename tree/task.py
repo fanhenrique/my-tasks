@@ -1,5 +1,5 @@
 import messages.messages as msg
-from .node import Node
+from tree.node import Node
 
 allowed_priorities = [0,1,2]
 

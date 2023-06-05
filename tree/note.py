@@ -1,5 +1,5 @@
 import messages.messages as msg
-from .node import Node
+from tree.node import Node
 
 class Note(Node):
 
