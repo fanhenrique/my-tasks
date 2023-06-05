@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path 
 
+import utils
 import messages.messages as msg
 from tree.tree import Tree
 
@@ -39,6 +40,9 @@ def main():
     open(CONTEXT_TREE,'w').close()
 
   if args.file:
+    if not utils.only_one_arg('file', args.__dict__):
+      print('use only --file command') #TODO create message
+      return
     
     path_tree = Path(str(PATH_DIRWORK)+'/'+args.file)
 
@@ -59,10 +63,12 @@ def main():
       else:
         print(msg.uninitialized_context())
         return
-    
 
     
   if args.timeline:
+    if not utils.only_one_arg('timeline', args.__dict__):
+      print('use only --timeline command') #TODO create message
+      return
     tree.timeline()
     
   # new task with or withuot priority level
@@ -111,25 +117,12 @@ def main():
 
 
   # print some tree node or all tree
-  if (
-    args.input
-    and args.file is None
-    and not args.timeline 
-    and args.task is None 
-    and args.note is None
-    and args.board is None
-    and args.delete is None
-    and args.check is None
-    and args.started is None
-    and args.star is None
-    and args.priority is None
-    and args.edit is None
-  ):
-    x = tree.search(args.input)
-    if x:
-      tree.print_tree(x)
-
-  else:
+  if args.input and utils.only_one_arg('input', args.__dict__):
+      x = tree.search(args.input)
+      if x:
+        tree.print_tree(x)
+  
+  # if all arguments are empty, print the whole tree 
     if (
       args.input is None
       and args.file is None

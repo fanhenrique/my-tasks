@@ -16,3 +16,9 @@ def string_type_node(node, first_upcase=False):
     return 'Board' if first_upcase else 'board'
 
 
+def all_args_are_empty(args):
+  for arg in args:
+    if args[arg]:
+      return False
+  return True
+    
