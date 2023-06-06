@@ -164,10 +164,10 @@ def success_changed_not_started(node:Task):
   return f'{success_changed(node)} {text(txt.NOT_STARTED)}'
 
 def success_changed_check(node:Task):
-  return f'{success_changed(node)} {text(txt.CHECK)}'
+  return f'{success_changed(node)} {text(txt.CHECKED)}'
 
 def success_changed_not_check(node:Task):
-  return f'{success_changed(node)} {text(txt.NOT_CHECK)}'
+  return f'{success_changed(node)} {text(txt.UNCHEKED)}'
 
 
 # change in nodes
