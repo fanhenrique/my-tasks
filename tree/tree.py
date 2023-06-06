@@ -230,6 +230,11 @@ class Tree():
 
   def search_board_per_name(self, name):
     
+    #return if not exists root 
+    if not self.root: 
+      print(msg.tree_empty())
+      return
+
     dfsb = self._depth_firt_search_board_recursive(self.root, name, [])
     
     if not dfsb:
