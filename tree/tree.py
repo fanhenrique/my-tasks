@@ -205,7 +205,7 @@ class Tree():
 
   def search(self, input):
     if input is None:
-      return self.root
+      return
     else:
       if type(input) is str and input[0] == '@':  
         return self.search_board_per_name(input[1:])
