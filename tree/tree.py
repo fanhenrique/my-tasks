@@ -16,14 +16,15 @@ class Tree():
         
   # add new node
   def add(self, type, input, text, priority=0):
-      
-    # search_node father
-    father = self.search(input) if input else self.root
     
-    # father not found
-    if not father:
-      return
-    
+    # search father if input else father is root
+    if input:
+      father = self.search(input) 
+      if not father:
+        return
+    else:
+      father = self.root
+
     try:
       # create node
       if type == 'note': 
